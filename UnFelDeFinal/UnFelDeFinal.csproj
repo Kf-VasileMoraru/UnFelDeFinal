@@ -6,6 +6,13 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Extern\Dtos\" />
+    <Folder Include="Extern\Mappings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UnFelDeFinal.Db\UnFelDeFinal.Db.csproj" />
+    <ProjectReference Include="..\UnFelDeFinal.Domain\UnFelDeFinal.Domain.csproj" />
   </ItemGroup>
 
 
