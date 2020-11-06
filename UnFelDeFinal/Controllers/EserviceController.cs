@@ -48,5 +48,20 @@ namespace UnFelDeFinal.Controllers
         }
 
 
+        // POST api/<EmployeesController>
+        [HttpPost]
+        public IActionResult Post([FromBody] CreateEserviceDto dto)
+        {
+            var employee = eServiceService.AddNewEservice(dto);
+
+            if (employee == null)
+                return BadRequest("Service with such Trez already exists");
+
+            var result = mapper.Map<EserviceDto>(employee);
+
+            return CreatedAtAction(nameof(Get), new { id = employee.Id }, result);
+        }
+
+
     }
 }
