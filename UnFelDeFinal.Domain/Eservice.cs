@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace UnFelDeFinal.Domain
 {
-    public class Eservice
+    public class Eservice : BaseEntity
     {
-        public int Id { get; set; }
+        
         public string Name { get; set; }
         public decimal Amount { get; set; }
         public string TreasureAccount { get; set; }

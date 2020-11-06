@@ -12,9 +12,9 @@ namespace UnFelDeFinal.Domain
         Pers_Juridica = 1,
     }
 
-    public class PayerInfo
+    public class PayerInfo : BaseEntity
     {
-        public int Id { get; set; }
+        
         public string PayerName { get; set; }
         public string Idnx { get; set; }
         public PayerType PayerType { get; set; }

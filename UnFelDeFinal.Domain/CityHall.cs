@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace UnFelDeFinal.Domain
 {
-    public class CityHall
+    public class CityHall : BaseEntity
     {
-        public int Id { get; set; }
 
         [StringLength(50, MinimumLength = 5,
         ErrorMessage = "CityHall Name should be minimum 3 characters and a maximum of 50 characters")]

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace UnFelDeFinal.Domain
 {
-    public class Iban
+    public class Iban : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int? ServiceId { get; set; }
         public int? CityHallId { get; set; }

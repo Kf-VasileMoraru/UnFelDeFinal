@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace UnFelDeFinal.Domain
 {
-    public class ServiceList
+    public class ServiceList : BaseEntity
     {
-        public int Id { get; set; }
         public bool IsPayed { get; set; }
         public DateTime? IsPayedDataTime { get; set; }
         public int? ServiceId { get; set; }
