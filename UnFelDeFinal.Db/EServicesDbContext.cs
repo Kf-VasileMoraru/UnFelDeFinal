@@ -13,7 +13,7 @@ namespace UnFelDeFinal.Db
 {
     public class EServicesDbContext : DbContext
     {
-        private const string _connectionString = @"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //private const string _connectionString = @"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public DbSet<PayerInfo> PayerInfo { get; set; }
         public DbSet<ServiceList> ServiceList { get; set; }
@@ -31,7 +31,7 @@ namespace UnFelDeFinal.Db
         {
             optionsBuilder
                 .UseLazyLoadingProxies()
-                .UseSqlServer(_connectionString)
+                //.UseSqlServer(_connectionString)
                 .ConfigureWarnings(wornings => wornings.Throw(CoreEventId.IncludeIgnoredWarning));
         }
 
