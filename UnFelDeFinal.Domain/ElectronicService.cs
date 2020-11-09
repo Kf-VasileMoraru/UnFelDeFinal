@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnFelDeFinal.Domain
 {
-    public class Eservice : BaseEntity
+    public class ElectronicService : BaseEntity
     {
         
         public string Name { get; set; }
@@ -14,7 +14,7 @@ namespace UnFelDeFinal.Domain
         public string TreasureAccount { get; set; }
 
         //navigation property
-        public virtual ICollection<ServiceList> ServiceLists { get; set; }
+        public virtual ICollection<BillingDetails> BillingDetails { get; set; }
         public virtual ICollection<Iban> Iban { get; set; }
     }
 }

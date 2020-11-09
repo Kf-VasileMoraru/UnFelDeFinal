@@ -21,8 +21,13 @@ namespace UnFelDeFinal.Domain
         [Column(TypeName = "varchar(20)")]
         public string BanckAccount { get; set; }
 
+        public int? AddressCityHallId1 { get; set; }
+        public int? AddressCityHallId2 { get; set; }
+
         //navigation property
-        public virtual ICollection<ServiceList> ServiceLists { get; set; }
+        public virtual ICollection<BillingDetails> BillingDetails { get; set; }
         public virtual ICollection<Iban> Iban { get; set; }
+        public virtual AddressCityHall AddressCityHall { get; set; }
+        public virtual ICollection<ContactCityHall> ContactCityHall { get; set; }
     }
 }

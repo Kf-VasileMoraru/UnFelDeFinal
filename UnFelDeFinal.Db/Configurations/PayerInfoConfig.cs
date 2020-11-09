@@ -10,9 +10,9 @@ using UnFelDeFinal.Domain;
 namespace UnFelDeFinal.Db.Configurations
 {
 
-    public class PayerInfoConfig : IEntityTypeConfiguration<PayerInfo>
+    public class PayerInfoConfig : IEntityTypeConfiguration<ElectronicServicePaymentInfo>
     {
-        public void Configure(EntityTypeBuilder<PayerInfo> builder)
+        public void Configure(EntityTypeBuilder<ElectronicServicePaymentInfo> builder)
         {
             builder.Property(x => x.PayerName).HasMaxLength(100).IsRequired();
             builder.Property(x => x.Idnx).HasColumnType("char(13)").IsRequired();

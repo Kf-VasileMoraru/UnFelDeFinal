@@ -3,76 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UnFelDeFinal.Db;
 
 namespace UnFelDeFinal.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
-    partial class EServicesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201109100346_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.AddressCityHall", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HouseNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalColde")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AddressCityHalls");
-                });
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.AddressPerson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ElectronicServicePaymentInfoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HouseNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalColde")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ElectronicServicePaymentInfoId")
-                        .IsUnique()
-                        .HasFilter("[ElectronicServicePaymentInfoId] IS NOT NULL");
-
-                    b.ToTable("AddressPeople");
-                });
 
             modelBuilder.Entity("UnFelDeFinal.Domain.BillingDetails", b =>
                 {
@@ -141,15 +88,6 @@ namespace UnFelDeFinal.Db.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AddressCityHallId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AddressCityHallId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AddressCityHallId2")
-                        .HasColumnType("int");
-
                     b.Property<string>("BanckAccount")
                         .HasColumnType("varchar(20)");
 
@@ -159,8 +97,6 @@ namespace UnFelDeFinal.Db.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressCityHallId");
 
                     b.ToTable("CityHalls");
 
@@ -191,97 +127,6 @@ namespace UnFelDeFinal.Db.Migrations
                             BanckAccount = "BanckAccount4",
                             Name = "Budesti"
                         });
-                });
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.ContactCityHall", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CityHallId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContactData")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ContactTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId0")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId2")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId3")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId4")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId5")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityHallId");
-
-                    b.HasIndex("ContactTypeId");
-
-                    b.ToTable("ContactCityHalls");
-                });
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.ContactPerson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ContactData")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ContactTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId0")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ContactTypeId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ElectronicServicePaymentInfoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContactTypeId");
-
-                    b.HasIndex("ElectronicServicePaymentInfoId")
-                        .IsUnique()
-                        .HasFilter("[ElectronicServicePaymentInfoId] IS NOT NULL");
-
-                    b.ToTable("ContactPeople");
-                });
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.ContactType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ContactTypes");
                 });
 
             modelBuilder.Entity("UnFelDeFinal.Domain.ElectronicService", b =>
@@ -480,13 +325,6 @@ namespace UnFelDeFinal.Db.Migrations
                         });
                 });
 
-            modelBuilder.Entity("UnFelDeFinal.Domain.AddressPerson", b =>
-                {
-                    b.HasOne("UnFelDeFinal.Domain.ElectronicServicePaymentInfo", "ElectronicServicePaymentInfo")
-                        .WithOne("AddressPerson")
-                        .HasForeignKey("UnFelDeFinal.Domain.AddressPerson", "ElectronicServicePaymentInfoId");
-                });
-
             modelBuilder.Entity("UnFelDeFinal.Domain.BillingDetails", b =>
                 {
                     b.HasOne("UnFelDeFinal.Domain.CityHall", "CityHall")
@@ -506,35 +344,6 @@ namespace UnFelDeFinal.Db.Migrations
                         .HasForeignKey("IbanId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.CityHall", b =>
-                {
-                    b.HasOne("UnFelDeFinal.Domain.AddressCityHall", "AddressCityHall")
-                        .WithMany("CityHall")
-                        .HasForeignKey("AddressCityHallId");
-                });
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.ContactCityHall", b =>
-                {
-                    b.HasOne("UnFelDeFinal.Domain.CityHall", "CityHall")
-                        .WithMany("ContactCityHall")
-                        .HasForeignKey("CityHallId");
-
-                    b.HasOne("UnFelDeFinal.Domain.ContactType", "ContactType")
-                        .WithMany("ContactCityHall")
-                        .HasForeignKey("ContactTypeId");
-                });
-
-            modelBuilder.Entity("UnFelDeFinal.Domain.ContactPerson", b =>
-                {
-                    b.HasOne("UnFelDeFinal.Domain.ContactType", "ContactType")
-                        .WithMany("ContactPerson")
-                        .HasForeignKey("ContactTypeId");
-
-                    b.HasOne("UnFelDeFinal.Domain.ElectronicServicePaymentInfo", "ElectronicServicePaymentInfo")
-                        .WithOne("ContactPerson")
-                        .HasForeignKey("UnFelDeFinal.Domain.ContactPerson", "ElectronicServicePaymentInfoId");
                 });
 
             modelBuilder.Entity("UnFelDeFinal.Domain.Iban", b =>

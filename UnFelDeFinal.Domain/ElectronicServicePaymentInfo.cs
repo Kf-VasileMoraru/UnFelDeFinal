@@ -12,17 +12,19 @@ namespace UnFelDeFinal.Domain
         Pers_Juridica = 1,
     }
 
-    public class PayerInfo : BaseEntity
+    public class ElectronicServicePaymentInfo : BaseEntity
     {
         
         public string PayerName { get; set; }
         public string Idnx { get; set; }
         public PayerType PayerType { get; set; }
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
         public DateTime DataTime { get; set; }
         public string Comment { get; set; }
 
         //navigation property
-        public virtual ICollection<ServiceList> ServiceLists { get; set; }
+        public virtual ICollection<BillingDetails> BillingDetails { get; set; }
+        public virtual AddressPerson AddressPerson { get; set; }
+        public virtual ContactPerson ContactPerson { get; set; }
     }
 }

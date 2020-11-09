@@ -13,23 +13,23 @@ namespace UnFelDeFinal.Services
 {
     public class EServiceService : IEServiceService
     {
-        private readonly IRepository<Eservice> eseviceRepository;
+        private readonly IRepository<ElectronicService> eseviceRepository;
         private readonly IMapper mapper;
 
-        public EServiceService(IRepository<Eservice> eseviceRepository, IMapper mapper)
+        public EServiceService(IRepository<ElectronicService> eseviceRepository, IMapper mapper)
         {
             this.eseviceRepository = eseviceRepository;
             this.mapper = mapper;
         }
 
-        public Eservice GetEserviceById(int id)
+        public ElectronicService GetEserviceById(int id)
         {
             return eseviceRepository.Find(id);
         }
 
-        public IList<Eservice> GetEservice(FilterOptions filterOptions)
+        public IList<ElectronicService> GetEservice(FilterOptions filterOptions)
         {
-            IQueryable<Eservice> eservices;
+            IQueryable<ElectronicService> eservices;
 
             if (!string.IsNullOrWhiteSpace(filterOptions.SearchTerm))
             {
@@ -53,13 +53,13 @@ namespace UnFelDeFinal.Services
             return eservices.ToList();
         }
 
-        public Eservice AddNewEservice(CreateEserviceDto createEserviceDto)
+        public ElectronicService AddNewEservice(CreateEserviceDto createEserviceDto)
         {
             if (CheckIfTrezorExist(createEserviceDto.TreasureAccount))
                 return null;
 
 
-            var eservice = mapper.Map<Eservice>(createEserviceDto);
+            var eservice = mapper.Map<ElectronicService>(createEserviceDto);
 
             //var employee = new Employee
             //{
