@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UnFelDeFinal.Extern.Dtos
 {
-    public class CreateEserviceDto
+    public class CreateElectronicServiceDto
     {
         [StringLength(450, MinimumLength = 5, ErrorMessage = "Name min 5 to max 450 char")]
         [Required]

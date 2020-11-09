@@ -13,8 +13,8 @@ namespace UnFelDeFinal.Extern.Mappings
     {
         public EServiceMappingProfile()
         {
-            CreateMap<ElectronicService, EserviceDto>();
-            CreateMap<CreateEserviceDto, ElectronicService>();
+            CreateMap<ElectronicService, ElectronicServiceDto>();
+            CreateMap<CreateElectronicServiceDto, ElectronicService>();
         }
     }
 }

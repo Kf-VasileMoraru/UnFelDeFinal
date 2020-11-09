@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnFelDeFinal.Domain;
+using UnFelDeFinal.Exceptions;
 using UnFelDeFinal.Extern.Dtos;
 using UnFelDeFinal.Models;
 
@@ -53,13 +54,13 @@ namespace UnFelDeFinal.Services
             return eservices.ToList();
         }
 
-        public ElectronicService AddNewEservice(CreateEserviceDto createEserviceDto)
+        public ElectronicService AddNewEservice(CreateElectronicServiceDto dto)
         {
-            if (CheckIfTrezorExist(createEserviceDto.TreasureAccount))
+            if (CheckIfTrezorExist(dto.TreasureAccount))
                 return null;
 
 
-            var eservice = mapper.Map<ElectronicService>(createEserviceDto);
+            var eservice = mapper.Map<ElectronicService>(dto);
 
             //var employee = new Employee
             //{
@@ -72,6 +73,35 @@ namespace UnFelDeFinal.Services
             eseviceRepository.Add(eservice);
             eseviceRepository.Save();
             return eservice;
+        }
+
+        public ElectronicService UpdateElectronicServiceDetails(int id, CreateElectronicServiceDto dto)
+        {
+            var eservice = eseviceRepository.Find(id);
+            if (eservice == null)
+                throw new NotFoundException("Electornic Service not found!");
+
+            //eservice = mapper.Map<ElectronicService>(dto);
+            eservice.Amount = dto.Amount;
+            // eservice.TreasureAccount = dto.TreasureAccount; 
+            // TODO: Do this later 2
+            eservice.Name = dto.Name;
+
+            eseviceRepository.Update(eservice);
+            eseviceRepository.Save();
+            return eservice;
+        }
+
+        public bool RemoveElectronicServiceById(int id)
+        {
+            var eservice = eseviceRepository.Find(id);
+            if (eservice != null)
+            {
+                eseviceRepository.Delete(eservice);
+                eseviceRepository.Save();
+                return true;
+            }
+            else return false;
         }
 
 

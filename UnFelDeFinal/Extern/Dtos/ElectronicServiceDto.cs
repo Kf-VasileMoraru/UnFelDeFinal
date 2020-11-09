@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnFelDeFinal.Extern.Dtos
 {
-    public class EserviceDto
+    public class ElectronicServiceDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

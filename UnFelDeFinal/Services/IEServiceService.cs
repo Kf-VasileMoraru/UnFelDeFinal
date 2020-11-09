@@ -7,8 +7,10 @@ namespace UnFelDeFinal.Services
 {
     public interface IEServiceService
     {
-        ElectronicService AddNewEservice(CreateEserviceDto createEserviceDto);
+        ElectronicService AddNewEservice(CreateElectronicServiceDto dto);
         IList<ElectronicService> GetEservice(FilterOptions filterOptions);
         ElectronicService GetEserviceById(int id);
+        bool RemoveElectronicServiceById(int id);
+        ElectronicService UpdateElectronicServiceDetails(int id, CreateElectronicServiceDto dto);
     }
 }
