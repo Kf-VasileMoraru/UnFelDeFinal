@@ -30,7 +30,7 @@ namespace UnFelDeFinal.Controllers
         public IActionResult Get([FromQuery] FilterOptions filterOptions)
         {
             var eService = eServiceService.GetEservice(filterOptions);
-            var result = eService.Select(e => mapper.Map<ElectronicServiceDto>(e));
+            var result = eService.Select(eService => mapper.Map<ElectronicServiceDto>(eService));
 
             return Ok(result);
         }
