@@ -1,17 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using UnFelDeFinal.Db.Configurations;
 using UnFelDeFinal.Domain;
 
 namespace UnFelDeFinal.Db
 {
-    public class EServicesDbContext : DbContext
+    public class EServicesDbContext : IdentityDbContext<ApplicationUser>
     {
         //private const string _connectionString = @"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
@@ -36,9 +32,8 @@ namespace UnFelDeFinal.Db
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseLazyLoadingProxies()
-                //.UseSqlServer(_connectionString)
-                .ConfigureWarnings(wornings => wornings.Throw(CoreEventId.IncludeIgnoredWarning));
+                .UseLazyLoadingProxies();
+               // .UseSqlServer(_connectionString)
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -82,10 +77,16 @@ namespace UnFelDeFinal.Db
                 .WithOne(s => s.CityHall)
                 .HasForeignKey(s => s.CityHallId);
 
-            modelBuilder.Entity<ElectronicService>().HasMany(s => s.Iban)
-                .WithOne(s => s.ElectronicService)
-                .HasForeignKey(s => s.ElectronicServiceId);
+            modelBuilder.Entity<ElectronicService>().HasMany(e => e.Iban)
+                .WithOne(i => i.ElectronicService)
+                .HasForeignKey(i => i.ElectronicServiceId);
 
+            modelBuilder.Entity<ApplicationUser>().HasMany(a => a.BillingDetails)
+               .WithOne(b => b.ApplicationUser)
+               .HasForeignKey(b => b.ApplicationUserId);
+
+
+            ////seeding
             modelBuilder.Entity<ElectronicService>()
                 .HasData(
                 new ElectronicService() { Id = 1, Name = "test 1 service ", Amount = 20.52m, TreasureAccount = "Treasure1" },
@@ -122,12 +123,13 @@ namespace UnFelDeFinal.Db
                 new ElectronicServicePaymentInfo() { Id = 2, PayerName = "payer name 2", Idnx = "0123456789013", PayerType = PayerType.Pers_Juridica, Amount = 10.2m }
                 );
 
-            modelBuilder.Entity<BillingDetails>()
-               .HasData(
-               new BillingDetails() { Id = 1, IsPayed = false, ElectronicServiceId = 1, CityHallId = 1, ElectronicServicePaymentInfoId = 1, IbanId = 1 },
-               new BillingDetails() { Id = 2, IsPayed = false, ElectronicServiceId = 2, CityHallId = 2, ElectronicServicePaymentInfoId = 1, IbanId = 2 }
 
-               );
+            //modelBuilder.Entity<BillingDetails>()
+            //   .HasData(
+            //   new BillingDetails() { Id = 1, IsPayed = false, ElectronicServiceId = 1, CityHallId = 1, ElectronicServicePaymentInfoId = 1, IbanId = 1 },
+            //   new BillingDetails() { Id = 2, IsPayed = false, ElectronicServiceId = 2, CityHallId = 2, ElectronicServicePaymentInfoId = 1, IbanId = 2 }
+
+            //   );
         }
 
     }

@@ -5,7 +5,7 @@ using UnFelDeFinal.Models;
 
 namespace UnFelDeFinal.Services
 {
-    public interface IEServiceService
+    public interface IElectronicServiceService
     {
         ElectronicService AddNewEservice(CreateElectronicServiceDto dto);
         IList<ElectronicService> GetEservice(FilterOptions filterOptions);

@@ -14,11 +14,13 @@ namespace UnFelDeFinal.Domain
         public int? CityHallId { get; set; }
         public int? ElectronicServicePaymentInfoId { get; set; }
         public int IbanId { get; set; }
+        public string ApplicationUserId { get; set; }
 
         //navigation property
         public virtual ElectronicServicePaymentInfo ElectronicServicePaymentInfo { get; set; }
         public virtual ElectronicService ElectronicService { get; set; }
         public virtual CityHall CityHall { get; set; }
         public virtual Iban Iban { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

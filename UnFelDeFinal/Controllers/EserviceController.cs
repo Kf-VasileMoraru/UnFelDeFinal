@@ -15,10 +15,10 @@ namespace UnFelDeFinal.Controllers
     [ApiController]
     public class EserviceController : ControllerBase
     {
-        private readonly IEServiceService eServiceService;
+        private readonly IElectronicServiceService eServiceService;
         private readonly IMapper mapper;
 
-        public EserviceController(IEServiceService eServiceService, IMapper mapper )
+        public EserviceController(IElectronicServiceService eServiceService, IMapper mapper )
         {
             this.eServiceService = eServiceService;
             this.mapper = mapper;

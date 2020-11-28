@@ -20,7 +20,7 @@ namespace WebApi_UnitTestProject1
     public class EServiceControllerTest
     {
         private Mock<IMapper> mockMapper;
-        private Mock<IEServiceService> mockEServiceService;
+        private Mock<IElectronicServiceService> mockEServiceService;
         private EserviceController eServiceController;
         private List<ElectronicService> eServiceList;
 
@@ -28,7 +28,7 @@ namespace WebApi_UnitTestProject1
         public void Initializer()
         {
             mockMapper = new Mock<IMapper>();
-            mockEServiceService = new Mock<IEServiceService>();
+            mockEServiceService = new Mock<IElectronicServiceService>();
             eServiceController = new EserviceController(mockEServiceService.Object, mockMapper.Object);
 
             mockMapper.Setup(m => m.Map<ElectronicServiceDto>(It.IsAny<ElectronicService>())).Returns((ElectronicService e) => new ElectronicServiceDto()

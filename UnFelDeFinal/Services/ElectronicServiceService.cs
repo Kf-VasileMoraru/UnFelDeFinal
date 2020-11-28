@@ -12,12 +12,12 @@ using UnFelDeFinal.Models;
 
 namespace UnFelDeFinal.Services
 {
-    public class EServiceService : IEServiceService
+    public class ElectronicServiceService : IElectronicServiceService
     {
         private readonly IRepository<ElectronicService> eseviceRepository;
         private readonly IMapper mapper;
 
-        public EServiceService(IRepository<ElectronicService> eseviceRepository, IMapper mapper)
+        public ElectronicServiceService(IRepository<ElectronicService> eseviceRepository, IMapper mapper)
         {
             this.eseviceRepository = eseviceRepository;
             this.mapper = mapper;
