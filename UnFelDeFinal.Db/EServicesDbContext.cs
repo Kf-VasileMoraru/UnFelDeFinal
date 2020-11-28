@@ -9,7 +9,6 @@ namespace UnFelDeFinal.Db
 {
     public class EServicesDbContext : IdentityDbContext<ApplicationUser>
     {
-        //private const string _connectionString = @"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public DbSet<ElectronicServicePaymentInfo> ElectronicServicePaymentInfo { get; set; }
         public DbSet<BillingDetails> BillingDetails { get; set; }
@@ -31,9 +30,9 @@ namespace UnFelDeFinal.Db
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                .UseLazyLoadingProxies();
-               // .UseSqlServer(_connectionString)
+            //optionsBuilder
+            //    .UseLazyLoadingProxies()
+            //    .UseSqlServer(@"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

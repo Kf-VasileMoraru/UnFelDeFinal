@@ -87,7 +87,7 @@ namespace UnFelDeFinal.Services
             {
                 new Claim("Email", model.Email),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Role, "Admins")
+               
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AuthSettings:Key"]));

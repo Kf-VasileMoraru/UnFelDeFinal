@@ -11,10 +11,10 @@ namespace UnFelDeFinal.Controllers
     public class AuthController : ControllerBase
     {
 
-        private IUserService _userService;
+        private IUserService userService;
         public AuthController(IUserService userService)
         {
-            _userService = userService;
+            this.userService = userService;
         }
 
         // /api/auth/register
@@ -23,7 +23,7 @@ namespace UnFelDeFinal.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await _userService.RegisterUserAsync(dto);
+                var result = await userService.RegisterUserAsync(dto);
 
                 if (result.IsSuccess)
                     return Ok(result); // Status Code: 200 
@@ -40,7 +40,7 @@ namespace UnFelDeFinal.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await _userService.LoginUserAsync(dto);
+                var result = await userService.LoginUserAsync(dto);
 
                 if (result.IsSuccess)
                 {
