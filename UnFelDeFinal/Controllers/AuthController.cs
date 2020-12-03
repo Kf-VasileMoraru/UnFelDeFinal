@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using UnFelDeFinal.Extern.Dtos;
-using UnFelDeFinal.Extern.Dtos.Auth;
-using UnFelDeFinal.Services;
+using InternProj.Extern.Dtos;
+using InternProj.Extern.Dtos.Auth;
+using InternProj.Services;
 
-namespace UnFelDeFinal.Controllers
+namespace InternProj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

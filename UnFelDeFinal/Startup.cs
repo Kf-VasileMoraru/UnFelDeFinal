@@ -17,12 +17,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using UnFelDeFinal.Db;
-using UnFelDeFinal.Domain;
-using UnFelDeFinal.Extern.Mappings;
-using UnFelDeFinal.Services;
+using InternProj.Db;
+using InternProj.Domain;
+using InternProj.Extern.Mappings;
+using InternProj.Services;
 
-namespace UnFelDeFinal
+namespace InternProj
 {
     public class Startup
     {
@@ -69,6 +69,14 @@ namespace UnFelDeFinal
             });
 
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
+
             ConfigureSwagger(services);
 
             services.AddControllers();
@@ -88,6 +96,8 @@ namespace UnFelDeFinal
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("MyPolicy");
 
             app.UseRouting();
 

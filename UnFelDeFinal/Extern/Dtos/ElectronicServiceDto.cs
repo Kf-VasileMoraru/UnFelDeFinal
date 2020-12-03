@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnFelDeFinal.Extern.Dtos
+namespace InternProj.Extern.Dtos
 {
     public class ElectronicServiceDto
     {

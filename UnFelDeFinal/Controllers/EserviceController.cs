@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using UnFelDeFinal.Exceptions;
-using UnFelDeFinal.Extern.Dtos;
-using UnFelDeFinal.Models;
-using UnFelDeFinal.Services;
+using InternProj.Exceptions;
+using InternProj.Extern.Dtos;
+using InternProj.Models;
+using InternProj.Services;
 
-namespace UnFelDeFinal.Controllers
+namespace InternProj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

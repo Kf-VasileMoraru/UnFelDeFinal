@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 
-namespace UnFelDeFinal.Models
+namespace InternProj.Models
 {
     public class FilterOptions
     {

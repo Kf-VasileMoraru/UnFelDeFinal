@@ -2,10 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Reflection;
-using UnFelDeFinal.Db.Configurations;
-using UnFelDeFinal.Domain;
+using InternProj.Db.Configurations;
+using InternProj.Domain;
 
-namespace UnFelDeFinal.Db
+namespace InternProj.Db
 {
     public class EServicesDbContext : IdentityDbContext<ApplicationUser>
     {

@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\UnFelDeFinal.Domain\UnFelDeFinal.Domain.csproj" />
+		<ProjectReference Include="..\UnFelDeFinal.Domain\InternProj.Domain.csproj" />
 	</ItemGroup>
 	
 	

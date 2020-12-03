@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using UnFelDeFinal.Domain;
+using InternProj.Domain;
 
-namespace UnFelDeFinal.Services
+namespace InternProj.Services
 {
     public interface IRepository<T> where T : BaseEntity
     {

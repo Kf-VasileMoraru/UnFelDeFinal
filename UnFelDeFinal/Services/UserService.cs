@@ -7,10 +7,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using UnFelDeFinal.Extern.Dtos.Auth;
-using UnFelDeFinal.Domain;
+using InternProj.Extern.Dtos.Auth;
+using InternProj.Domain;
 
-namespace UnFelDeFinal.Services
+namespace InternProj.Services
 {
     public class UserService : IUserService
     {
@@ -83,12 +83,17 @@ namespace UnFelDeFinal.Services
                     IsSuccess = false,
                 };
 
+            var role = await userManger.GetRolesAsync(user);
+
             var claims = new[]
             {
                 new Claim("Email", model.Email),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
-               
+                new Claim(ClaimTypes.Role, role.Count == 0 ? "undefined" : role[0] )
+
             };
+
+            
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AuthSettings:Key"]));
 

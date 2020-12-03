@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnFelDeFinal.Domain;
+using InternProj.Domain;
 
-namespace UnFelDeFinal.Db.Configurations
+namespace InternProj.Db.Configurations
 {
 
     public class PayerInfoConfig : IEntityTypeConfiguration<ElectronicServicePaymentInfo>

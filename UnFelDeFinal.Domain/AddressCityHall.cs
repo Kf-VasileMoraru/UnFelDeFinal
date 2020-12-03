@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace UnFelDeFinal.Domain
+namespace InternProj.Domain
 {
     public class AddressCityHall : BaseEntity
     {

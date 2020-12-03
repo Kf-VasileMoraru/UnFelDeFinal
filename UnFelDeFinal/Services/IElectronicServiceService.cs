@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnFelDeFinal.Domain;
-using UnFelDeFinal.Extern.Dtos;
-using UnFelDeFinal.Models;
+using InternProj.Domain;
+using InternProj.Extern.Dtos;
+using InternProj.Models;
 
-namespace UnFelDeFinal.Services
+namespace InternProj.Services
 {
     public interface IElectronicServiceService
     {

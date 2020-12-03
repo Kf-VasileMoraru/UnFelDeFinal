@@ -20,8 +20,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\UnFelDeFinal.Db\UnFelDeFinal.Db.csproj" />
-		<ProjectReference Include="..\UnFelDeFinal.Domain\UnFelDeFinal.Domain.csproj" />
+		<ProjectReference Include="..\UnFelDeFinal.Db\InternProj.Db.csproj" />
+		<ProjectReference Include="..\UnFelDeFinal.Domain\InternProj.Domain.csproj" />
 	</ItemGroup>
 
 

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnFelDeFinal.Exceptions
+namespace InternProj.Exceptions
 {
     public class ApiExceptionFilter : ExceptionFilterAttribute
     {

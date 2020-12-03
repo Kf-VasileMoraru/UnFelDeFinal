@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnFelDeFinal.Domain;
-using UnFelDeFinal.Exceptions;
-using UnFelDeFinal.Extern.Dtos;
-using UnFelDeFinal.Models;
+using InternProj.Domain;
+using InternProj.Exceptions;
+using InternProj.Extern.Dtos;
+using InternProj.Models;
 
-namespace UnFelDeFinal.Services
+namespace InternProj.Services
 {
     public class ElectronicServiceService : IElectronicServiceService
     {

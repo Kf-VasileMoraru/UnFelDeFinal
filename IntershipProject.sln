@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnFelDeFinal", "UnFelDeFinal\UnFelDeFinal.csproj", "{E025C478-3BE3-488B-B531-FC39312E8F9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternProj.WebApi", "UnFelDeFinal\InternProj.WebApi.csproj", "{E025C478-3BE3-488B-B531-FC39312E8F9F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnFelDeFinal.Db", "UnFelDeFinal.Db\UnFelDeFinal.Db.csproj", "{B50CA1E6-A3CD-431C-942E-FA06C5EEE816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternProj.Db", "UnFelDeFinal.Db\InternProj.Db.csproj", "{B50CA1E6-A3CD-431C-942E-FA06C5EEE816}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnFelDeFinal.Domain", "UnFelDeFinal.Domain\UnFelDeFinal.Domain.csproj", "{B7C9A190-5731-4F68-BA6D-CC63F773E51F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternProj.Domain", "UnFelDeFinal.Domain\InternProj.Domain.csproj", "{B7C9A190-5731-4F68-BA6D-CC63F773E51F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

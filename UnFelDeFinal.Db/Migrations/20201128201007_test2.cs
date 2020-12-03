@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace UnFelDeFinal.Db.Migrations
+namespace InternProj.Db.Migrations
 {
     public partial class test2 : Migration
     {

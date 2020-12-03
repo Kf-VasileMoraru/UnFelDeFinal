@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UnFelDeFinal.Db;
+using InternProj.Db;
 
-namespace UnFelDeFinal.Db.Migrations
+namespace InternProj.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
     partial class EServicesDbContextModelSnapshot : ModelSnapshot

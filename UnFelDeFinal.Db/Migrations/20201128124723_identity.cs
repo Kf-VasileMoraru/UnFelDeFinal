@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace UnFelDeFinal.Db.Migrations
+namespace InternProj.Db.Migrations
 {
     public partial class identity : Migration
     {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnFelDeFinal.Domain;
-using UnFelDeFinal.Extern.Roles;
+using InternProj.Domain;
+using InternProj.Extern.Roles;
 
-namespace UnFelDeFinal.Controllers
+namespace InternProj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,7 +25,7 @@ namespace UnFelDeFinal.Controllers
             this.userManager = userManager;
         }
 
-
+        
         [HttpGet("CreateRole")]
         public async Task CreateRole()
         {
@@ -49,7 +50,7 @@ namespace UnFelDeFinal.Controllers
             return Ok(roleManager.Roles);
         }
 
-
+        
         [HttpGet("ListUsersCount")]
         public IActionResult ListUsersCount()
         {

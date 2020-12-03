@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnFelDeFinal.Extern.Roles
+namespace InternProj.Extern.Roles
 {
     public class UserRoleDto
     {

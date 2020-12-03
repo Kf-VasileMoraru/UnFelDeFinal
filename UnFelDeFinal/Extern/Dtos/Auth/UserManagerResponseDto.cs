@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UnFelDeFinal.Extern.Dtos.Auth
+namespace InternProj.Extern.Dtos.Auth
 {
     public class UserManagerResponseDto
     {
