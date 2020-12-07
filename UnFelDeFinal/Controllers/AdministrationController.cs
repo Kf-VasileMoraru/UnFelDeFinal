@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InternProj.Domain;
 using InternProj.Extern.Roles;
+using InternProj.WebApi.Extern.Dtos.Roles;
 
 namespace InternProj.Controllers
 {
@@ -25,7 +26,7 @@ namespace InternProj.Controllers
             this.userManager = userManager;
         }
 
-        
+
         [HttpGet("CreateRole")]
         public async Task CreateRole()
         {
@@ -47,19 +48,99 @@ namespace InternProj.Controllers
         [HttpGet("ListRoles")]
         public IActionResult ListRoles()
         {
-            return Ok(roleManager.Roles);
+            var roleList = roleManager.Roles
+                .Select(x => x.Name);
+
+
+            return Ok(roleList);
         }
 
-        
+
         [HttpGet("ListUsersCount")]
         public IActionResult ListUsersCount()
         {
             return Ok(userManager.Users.Count());
         }
 
+        [HttpGet("GetUsersByRole")]
+        public async Task<IActionResult> GetUsersByRole(string roleName)
+        {
+
+            var role = await roleManager.FindByNameAsync(roleName);
+
+            if (role == null)
+            {
+                return BadRequest("Role id is not valid");
+            }
+
+            var dto = new List<UserRoleDto>();
+
+            var userList = await userManager.Users.ToListAsync();
 
 
+            foreach (var user in userList)
+            {
+                var userRoleViewModel = new UserRoleDto
+                {
+                    id = user.Id,
+                    UserName = user.UserName
+                };
 
+                if (await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRoleViewModel.IsSelected = true;
+                }
+                else
+                {
+                    userRoleViewModel.IsSelected = false;
+                }
+
+                dto.Add(userRoleViewModel);
+            }
+
+            return Ok(dto);
+        }
+
+
+        [HttpGet("GetUserByEmail")]
+        public async Task<IActionResult> GetUserByEmail(string userEmail, string roleName)
+        {
+
+            var user = await userManager.FindByEmailAsync(userEmail);
+
+            if (user == null)
+            {
+                return BadRequest("User email is not valid");
+            }
+
+            var dto = new UserRoleDto
+            {
+                id = user.Id,
+                UserName = user.UserName
+            };
+            if (await userManager.IsInRoleAsync(user, roleName))
+            {
+                dto.IsSelected = true;
+            }
+
+            return Ok(dto);
+        }
+
+        [HttpPost("ToggleUserCityHallAdminRole")]
+        public async Task<IActionResult> ToggleUserCityHallAdminRole([FromBody] ToggleUserCityHallAdminRole dto)
+        {
+            var user = await userManager.FindByEmailAsync(dto.UserEmail);
+
+            if (user == null)
+            {
+                return BadRequest("User email is not valid");
+            }
+
+            if (dto.Add) { await userManager.RemoveFromRoleAsync(user, "CityHallAdmin"); } else { await userManager.AddToRoleAsync(user, "CityHallAdmin"); }
+
+
+            return Ok();
+        }
 
 
         [HttpGet("EditUsersInRole")]
@@ -82,11 +163,11 @@ namespace InternProj.Controllers
             {
                 var userRoleViewModel = new UserRoleDto
                 {
-                    UserId = user.Id,
+                    id = user.Id,
                     UserName = user.UserName
                 };
 
-                if ( await userManager.IsInRoleAsync(user, role.Name))
+                if (await userManager.IsInRoleAsync(user, role.Name))
                 {
                     userRoleViewModel.IsSelected = true;
                 }
@@ -114,7 +195,7 @@ namespace InternProj.Controllers
 
             for (int i = 0; i < dto.Count; i++)
             {
-                var user = await userManager.FindByIdAsync(dto[i].UserId);
+                var user = await userManager.FindByIdAsync(dto[i].id);
 
                 IdentityResult result = null;
 
