@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternProj.Extern.Roles
+namespace InternProj.WebApi.Extern.Roles
 {
     public class UserRoleDto
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternProj.Extern.Dtos.Auth
+namespace InternProj.WebApi.Extern.Dtos.Auth
 {
     public class LoginDto
     {

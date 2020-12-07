@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using InternProj.Db;
 using InternProj.Domain;
 
-namespace InternProj.Services
+namespace InternProj.WebApi.Services
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {

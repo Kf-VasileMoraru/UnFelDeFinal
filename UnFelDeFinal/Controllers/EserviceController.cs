@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using InternProj.Exceptions;
+using InternProj.WebApi.Exceptions;
 using InternProj.Extern.Dtos;
 using InternProj.Models;
-using InternProj.Services;
+using InternProj.WebApi.Services;
 
-namespace InternProj.Controllers
+namespace InternProj.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

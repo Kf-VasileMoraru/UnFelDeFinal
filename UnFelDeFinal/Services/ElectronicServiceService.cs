@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InternProj.Domain;
-using InternProj.Exceptions;
+using InternProj.WebApi.Exceptions;
 using InternProj.Extern.Dtos;
 using InternProj.Models;
+using InternProj.WebApi.Services;
 
-namespace InternProj.Services
+namespace InternProj.WebApi.Services
 {
     public class ElectronicServiceService : IElectronicServiceService
     {

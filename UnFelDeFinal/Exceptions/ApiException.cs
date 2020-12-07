@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternProj.Exceptions
+namespace InternProj.WebApi.Exceptions
 {
     public class ApiException : Exception
     {

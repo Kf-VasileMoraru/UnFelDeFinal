@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InternProj.Domain;
-using InternProj.Extern.Roles;
+using InternProj.WebApi.Extern.Roles;
 using InternProj.WebApi.Extern.Dtos.Roles;
 
-namespace InternProj.Controllers
+namespace InternProj.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

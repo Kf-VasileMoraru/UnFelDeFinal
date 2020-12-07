@@ -20,9 +20,9 @@ using Microsoft.OpenApi.Models;
 using InternProj.Db;
 using InternProj.Domain;
 using InternProj.Extern.Mappings;
-using InternProj.Services;
+using InternProj.WebApi.Services;
 
-namespace InternProj
+namespace InternProj.WebApi
 {
     public class Startup
     {

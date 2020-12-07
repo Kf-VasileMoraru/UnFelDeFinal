@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InternProj.Extern.Dtos.Auth;
+using InternProj.WebApi.Extern.Dtos.Auth;
 
-namespace InternProj.Services
+namespace InternProj.WebApi.Services
 {
     public interface IUserService
     {

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using InternProj.Extern.Dtos.Auth;
+using InternProj.WebApi.Extern.Dtos.Auth;
 using InternProj.Domain;
 
-namespace InternProj.Services
+namespace InternProj.WebApi.Services
 {
     public class UserService : IUserService
     {

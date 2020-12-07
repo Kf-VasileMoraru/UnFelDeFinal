@@ -3,7 +3,7 @@ using InternProj.Domain;
 using InternProj.Extern.Dtos;
 using InternProj.Models;
 
-namespace InternProj.Services
+namespace InternProj.WebApi.Services
 {
     public interface IElectronicServiceService
     {
