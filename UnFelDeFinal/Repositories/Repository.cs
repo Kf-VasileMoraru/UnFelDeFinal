@@ -30,7 +30,7 @@ namespace InternProj.WebApi.Services
 
         public T Find(int id)
         {
-            return _dbSet.FirstOrDefault(x => x.Id == id);
+            return _dbSet.AsNoTracking().FirstOrDefault(x => x.Id == id);
         }
 
         public T Find(Expression<Func<T, bool>> predicate)

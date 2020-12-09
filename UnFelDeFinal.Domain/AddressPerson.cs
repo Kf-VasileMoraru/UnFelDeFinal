@@ -9,14 +9,13 @@ namespace InternProj.Domain
     public class AddressPerson : BaseEntity
     {
         public string City { get; set; }
-        public string Street { get; set; }
-        public string HouseNumber { get; set; }
+        public string StreetHouseNumber { get; set; }
         public string PostalColde { get; set; }
-        public int? ElectronicServicePaymentInfoId { get; set; }
 
 
         //navigation property
 
-        public virtual ElectronicServicePaymentInfo ElectronicServicePaymentInfo { get; set; }
+        //public virtual ICollection<ElectronicServicePaymentInfo> ElectronicServicePaymentInfo { get; set; }
     }
+
 }

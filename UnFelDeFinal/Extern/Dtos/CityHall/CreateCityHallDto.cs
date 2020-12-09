@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InternProj.Extern.Dtos
 {
-    public class CreateElectronicServiceDto
+    public class CreateCityHallDto
     {
         [StringLength(450, MinimumLength = 5, ErrorMessage = "Name min 5 to max 450 char")]
         [Required]
@@ -19,5 +19,9 @@ namespace InternProj.Extern.Dtos
 
         [StringLength(15, MinimumLength = 5, ErrorMessage = "Name min 5 to max 15 char")]
         public string TreasureAccount { get; set; }
+        public string Details { get; set; }
+        
+        [Required]
+        public string Label { get; set; }
     }
 }

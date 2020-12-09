@@ -4,19 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InternProj.Domain
+namespace InternProj.Extern.Dtos
 {
-    public class ElectronicService : BaseEntity
+    public class ElectronicServiceDto
     {
-        
+        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Amount { get; set; }
         public string TreasureAccount { get; set; }
         public string Details { get; set; }
         public string Label { get; set; }
 
-        //navigation property
-        public virtual ICollection<BillingDetails> BillingDetails { get; set; }
-        public virtual ICollection<Iban> Iban { get; set; }
     }
 }

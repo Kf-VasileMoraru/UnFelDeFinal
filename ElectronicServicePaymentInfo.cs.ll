@@ -21,10 +21,10 @@ namespace InternProj.Domain
         public decimal Amount { get; set; }
         public DateTime DataTime { get; set; }
         public string Comment { get; set; }
+        //public int AddressPersonId { get; set; }
 
         //navigation property
         public virtual ICollection<BillingDetails> BillingDetails { get; set; }
-        public virtual AddressPerson AddressPerson { get; set; }
-        public virtual ContactPerson ContactPerson { get; set; }
+        //public virtual AddressPerson AddressPerson { get; set; }
     }
 }

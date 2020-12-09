@@ -4,14 +4,16 @@ using InternProj.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternProj.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
-    partial class EServicesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201209120845_dbOptimization_v1")]
+    partial class dbOptimization_v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

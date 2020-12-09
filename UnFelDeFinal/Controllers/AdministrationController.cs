@@ -27,22 +27,22 @@ namespace InternProj.WebApi.Controllers
         }
 
 
-        [HttpGet("CreateRole")]
-        public async Task CreateRole()
-        {
-            IdentityRole identityRole1 = new IdentityRole
-            {
-                Name = "Admin"
-            };
-            IdentityRole identityRole2 = new IdentityRole
-            {
-                Name = "CityHallAdmin"
-            };
+        //[HttpGet("CreateRole")]
+        //public async Task CreateRole()
+        //{
+        //    IdentityRole identityRole1 = new IdentityRole
+        //    {
+        //        Name = "Admin"
+        //    };
+        //    IdentityRole identityRole2 = new IdentityRole
+        //    {
+        //        Name = "CityHallAdmin"
+        //    };
 
-            //await roleManager.CreateAsync(identityRole1);
-            //await roleManager.CreateAsync(identityRole2);
+        //    await roleManager.CreateAsync(identityRole1);
+        //    await roleManager.CreateAsync(identityRole2);
 
-        }
+        //}
 
 
         [HttpGet("ListRoles")]

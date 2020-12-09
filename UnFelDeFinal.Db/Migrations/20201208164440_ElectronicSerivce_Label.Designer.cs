@@ -4,14 +4,16 @@ using InternProj.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternProj.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
-    partial class EServicesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201208164440_ElectronicSerivce_Label")]
+    partial class ElectronicSerivce_Label
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace InternProj.Db.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("InternProj.Domain.AddressContactCityHall", b =>
+            modelBuilder.Entity("InternProj.Domain.AddressCityHall", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,45 +31,16 @@ namespace InternProj.Db.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CityHallId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone3")
+                    b.Property<string>("HouseNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalColde")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StreetHouseNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Web1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Web2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Web3")
+                    b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CityHallId");
 
                     b.ToTable("AddressCityHalls");
                 });
@@ -82,13 +55,23 @@ namespace InternProj.Db.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ElectronicServicePaymentInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HouseNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PostalColde")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StreetHouseNumber")
+                    b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ElectronicServicePaymentInfoId")
+                        .IsUnique()
+                        .HasFilter("[ElectronicServicePaymentInfoId] IS NOT NULL");
 
                     b.ToTable("AddressPeople");
                 });
@@ -138,13 +121,7 @@ namespace InternProj.Db.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("PostalColde")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetHouseNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -177,10 +154,13 @@ namespace InternProj.Db.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CityHallId")
+                    b.Property<int?>("CityHallId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ElectronicServiceId")
+                    b.Property<int?>("ElectronicServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ElectronicServicePaymentInfoId")
                         .HasColumnType("int");
 
                     b.Property<int>("IbanId")
@@ -202,6 +182,8 @@ namespace InternProj.Db.Migrations
 
                     b.HasIndex("ElectronicServiceId");
 
+                    b.HasIndex("ElectronicServicePaymentInfoId");
+
                     b.HasIndex("IbanId");
 
                     b.ToTable("BillingDetails");
@@ -214,6 +196,15 @@ namespace InternProj.Db.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("AddressCityHallId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AddressCityHallId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AddressCityHallId2")
+                        .HasColumnType("int");
+
                     b.Property<string>("BanckAccount")
                         .HasColumnType("varchar(20)");
 
@@ -223,6 +214,8 @@ namespace InternProj.Db.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressCityHallId");
 
                     b.ToTable("CityHalls");
 
@@ -253,6 +246,97 @@ namespace InternProj.Db.Migrations
                             BanckAccount = "BanckAccount4",
                             Name = "Budesti"
                         });
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ContactCityHall", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CityHallId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ContactTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId0")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId2")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId3")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId4")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId5")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityHallId");
+
+                    b.HasIndex("ContactTypeId");
+
+                    b.ToTable("ContactCityHalls");
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ContactPerson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ContactData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ContactTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId0")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ContactTypeId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ElectronicServicePaymentInfoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactTypeId");
+
+                    b.HasIndex("ElectronicServicePaymentInfoId")
+                        .IsUnique()
+                        .HasFilter("[ElectronicServicePaymentInfoId] IS NOT NULL");
+
+                    b.ToTable("ContactPeople");
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ContactType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactTypes");
                 });
 
             modelBuilder.Entity("InternProj.Domain.ElectronicService", b =>
@@ -322,6 +406,67 @@ namespace InternProj.Db.Migrations
                             Amount = 44.42m,
                             Name = "test 5 service ",
                             TreasureAccount = "Treasure5"
+                        });
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ElectronicServicePaymentInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("SMALLMONEY");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("DATETIME2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Idnx")
+                        .IsRequired()
+                        .HasColumnType("char(13)");
+
+                    b.Property<string>("PayerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("PayerType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ElectronicServicePaymentInfo");
+
+                    b.HasCheckConstraint("CK_PayerInfo_Amount", "Amount Like '%[0-9]%'");
+
+                    b.HasCheckConstraint("CK_PayerInfo_Idnx", "Idnx Like '[012]____________'");
+
+                    b.HasCheckConstraint("CK_PayerInfo_PayerName", "PayerName Like '%_____%'");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 20.2m,
+                            DataTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Idnx = "0123456789012",
+                            PayerName = "payer name 1",
+                            PayerType = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 10.2m,
+                            DataTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Idnx = "0123456789013",
+                            PayerName = "payer name 2",
+                            PayerType = 1
                         });
                 });
 
@@ -528,11 +673,11 @@ namespace InternProj.Db.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("InternProj.Domain.AddressContactCityHall", b =>
+            modelBuilder.Entity("InternProj.Domain.AddressPerson", b =>
                 {
-                    b.HasOne("InternProj.Domain.CityHall", "CityHall")
-                        .WithMany("AddressCityHall")
-                        .HasForeignKey("CityHallId");
+                    b.HasOne("InternProj.Domain.ElectronicServicePaymentInfo", "ElectronicServicePaymentInfo")
+                        .WithOne("AddressPerson")
+                        .HasForeignKey("InternProj.Domain.AddressPerson", "ElectronicServicePaymentInfoId");
                 });
 
             modelBuilder.Entity("InternProj.Domain.BillingDetails", b =>
@@ -543,21 +688,50 @@ namespace InternProj.Db.Migrations
 
                     b.HasOne("InternProj.Domain.CityHall", "CityHall")
                         .WithMany("BillingDetails")
-                        .HasForeignKey("CityHallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityHallId");
 
                     b.HasOne("InternProj.Domain.ElectronicService", "ElectronicService")
                         .WithMany("BillingDetails")
-                        .HasForeignKey("ElectronicServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ElectronicServiceId");
+
+                    b.HasOne("InternProj.Domain.ElectronicServicePaymentInfo", "ElectronicServicePaymentInfo")
+                        .WithMany("BillingDetails")
+                        .HasForeignKey("ElectronicServicePaymentInfoId");
 
                     b.HasOne("InternProj.Domain.Iban", "Iban")
                         .WithMany("BillingDetails")
                         .HasForeignKey("IbanId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("InternProj.Domain.CityHall", b =>
+                {
+                    b.HasOne("InternProj.Domain.AddressCityHall", "AddressCityHall")
+                        .WithMany("CityHall")
+                        .HasForeignKey("AddressCityHallId");
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ContactCityHall", b =>
+                {
+                    b.HasOne("InternProj.Domain.CityHall", "CityHall")
+                        .WithMany("ContactCityHall")
+                        .HasForeignKey("CityHallId");
+
+                    b.HasOne("InternProj.Domain.ContactType", "ContactType")
+                        .WithMany("ContactCityHall")
+                        .HasForeignKey("ContactTypeId");
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ContactPerson", b =>
+                {
+                    b.HasOne("InternProj.Domain.ContactType", "ContactType")
+                        .WithMany("ContactPerson")
+                        .HasForeignKey("ContactTypeId");
+
+                    b.HasOne("InternProj.Domain.ElectronicServicePaymentInfo", "ElectronicServicePaymentInfo")
+                        .WithOne("ContactPerson")
+                        .HasForeignKey("InternProj.Domain.ContactPerson", "ElectronicServicePaymentInfoId");
                 });
 
             modelBuilder.Entity("InternProj.Domain.Iban", b =>

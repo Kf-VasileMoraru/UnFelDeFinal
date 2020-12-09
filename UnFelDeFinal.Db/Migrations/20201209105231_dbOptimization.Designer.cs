@@ -4,14 +4,16 @@ using InternProj.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternProj.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
-    partial class EServicesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201209105231_dbOptimization")]
+    partial class dbOptimization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,10 +179,13 @@ namespace InternProj.Db.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CityHallId")
+                    b.Property<int?>("CityHallId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ElectronicServiceId")
+                    b.Property<int?>("ElectronicServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ElectronicServicePaymentInfoId")
                         .HasColumnType("int");
 
                     b.Property<int>("IbanId")
@@ -201,6 +206,8 @@ namespace InternProj.Db.Migrations
                     b.HasIndex("CityHallId");
 
                     b.HasIndex("ElectronicServiceId");
+
+                    b.HasIndex("ElectronicServicePaymentInfoId");
 
                     b.HasIndex("IbanId");
 
@@ -322,6 +329,74 @@ namespace InternProj.Db.Migrations
                             Amount = 44.42m,
                             Name = "test 5 service ",
                             TreasureAccount = "Treasure5"
+                        });
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ElectronicServicePaymentInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressPersonId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("SMALLMONEY");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DataTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("DATETIME2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("Idnx")
+                        .IsRequired()
+                        .HasColumnType("char(13)");
+
+                    b.Property<string>("PayerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("PayerType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressPersonId")
+                        .IsUnique()
+                        .HasFilter("[AddressPersonId] IS NOT NULL");
+
+                    b.ToTable("ElectronicServicePaymentInfo");
+
+                    b.HasCheckConstraint("CK_PayerInfo_Amount", "Amount Like '%[0-9]%'");
+
+                    b.HasCheckConstraint("CK_PayerInfo_Idnx", "Idnx Like '[012]____________'");
+
+                    b.HasCheckConstraint("CK_PayerInfo_PayerName", "PayerName Like '%_____%'");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 20.2m,
+                            DataTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Idnx = "0123456789012",
+                            PayerName = "payer name 1",
+                            PayerType = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 10.2m,
+                            DataTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Idnx = "0123456789013",
+                            PayerName = "payer name 2",
+                            PayerType = 1
                         });
                 });
 
@@ -543,21 +618,28 @@ namespace InternProj.Db.Migrations
 
                     b.HasOne("InternProj.Domain.CityHall", "CityHall")
                         .WithMany("BillingDetails")
-                        .HasForeignKey("CityHallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityHallId");
 
                     b.HasOne("InternProj.Domain.ElectronicService", "ElectronicService")
                         .WithMany("BillingDetails")
-                        .HasForeignKey("ElectronicServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ElectronicServiceId");
+
+                    b.HasOne("InternProj.Domain.ElectronicServicePaymentInfo", "ElectronicServicePaymentInfo")
+                        .WithMany("BillingDetails")
+                        .HasForeignKey("ElectronicServicePaymentInfoId");
 
                     b.HasOne("InternProj.Domain.Iban", "Iban")
                         .WithMany("BillingDetails")
                         .HasForeignKey("IbanId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("InternProj.Domain.ElectronicServicePaymentInfo", b =>
+                {
+                    b.HasOne("InternProj.Domain.AddressPerson", "AddressPerson")
+                        .WithOne("ElectronicServicePaymentInfo")
+                        .HasForeignKey("InternProj.Domain.ElectronicServicePaymentInfo", "AddressPersonId");
                 });
 
             modelBuilder.Entity("InternProj.Domain.Iban", b =>

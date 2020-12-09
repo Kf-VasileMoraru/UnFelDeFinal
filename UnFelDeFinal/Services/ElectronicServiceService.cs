@@ -45,10 +45,10 @@ namespace InternProj.WebApi.Services
             switch (filterOptions.Order)
             {
                 case SortOrder.Ascending:
-                    eservices = eservices.OrderBy(e => e.Name);
+                    eservices = eservices.OrderByDescending(e => e.Id);
                     break;
                 case SortOrder.Descending:
-                    eservices = eservices.OrderByDescending(e => e.Name);
+                    eservices = eservices.OrderBy(e => e.Id);
                     break;
             }
 
@@ -82,11 +82,14 @@ namespace InternProj.WebApi.Services
             if (eservice == null)
                 throw new NotFoundException("Electornic Service not found!");
 
-            //eservice = mapper.Map<ElectronicService>(dto);
-            eservice.Amount = dto.Amount;
-            // eservice.TreasureAccount = dto.TreasureAccount; 
-            // TODO: Do this later 2
-            eservice.Name = dto.Name;
+            eservice = mapper.Map<ElectronicService>(dto);
+
+            ////TODO: Do this later 2
+            //eservice.Amount = dto.Amount;
+            //eservice.TreasureAccount = dto.TreasureAccount;
+            //eservice.Name = dto.Name;
+            //eservice.Details = dto.Details;
+            eservice.Id = id;
 
             eseviceRepository.Update(eservice);
             eseviceRepository.Save();

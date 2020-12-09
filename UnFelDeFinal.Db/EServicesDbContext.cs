@@ -10,16 +10,13 @@ namespace InternProj.Db
     public class EServicesDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        public DbSet<ElectronicServicePaymentInfo> ElectronicServicePaymentInfo { get; set; }
+        //public DbSet<ElectronicServicePaymentInfo> ElectronicServicePaymentInfo { get; set; }
         public DbSet<BillingDetails> BillingDetails { get; set; }
         public DbSet<CityHall> CityHalls { get; set; }
         public DbSet<Iban> Ibans { get; set; }
         public DbSet<ElectronicService> ElectronicService { get; set; }
-        public DbSet<AddressCityHall> AddressCityHalls { get; set; }
-        public DbSet<ContactCityHall> ContactCityHalls { get; set; }
-        public DbSet<ContactType> ContactTypes { get; set; }
+        public DbSet<AddressContactCityHall> AddressCityHalls { get; set; }
         public DbSet<AddressPerson> AddressPeople { get; set; }
-        public DbSet<ContactPerson> ContactPeople { get; set; }
 
 
 
@@ -31,14 +28,14 @@ namespace InternProj.Db
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseLazyLoadingProxies()
-                .UseSqlServer(@"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            .UseLazyLoadingProxies()
+            .UseSqlServer(@"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new PayerInfoConfig());
+            //modelBuilder.ApplyConfiguration(new PayerInfoConfig());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(EServicesDbContext)));
 
             modelBuilder.Entity<CityHall>(entity =>
@@ -50,7 +47,7 @@ namespace InternProj.Db
 
             modelBuilder.Entity<ElectronicService>().Property(x => x.Name).HasMaxLength(450).IsRequired();
             modelBuilder.Entity<ElectronicService>().Property(x => x.TreasureAccount).HasColumnType("varchar(15)").IsRequired();
-            modelBuilder.Entity<ElectronicService>().HasAlternateKey(s => s.TreasureAccount);
+            modelBuilder.Entity<ElectronicService>().HasIndex(s => s.TreasureAccount).IsUnique(true);
             modelBuilder.Entity<ElectronicService>().Property(x => x.Amount).HasColumnType("SMALLMONEY").IsRequired();
 
             modelBuilder.Entity<BillingDetails>().Property(x => x.IsPayedDataTime).HasColumnType("SMALLDATETIME");
@@ -84,6 +81,10 @@ namespace InternProj.Db
                .WithOne(b => b.ApplicationUser)
                .HasForeignKey(b => b.ApplicationUserId);
 
+            //modelBuilder.Entity<AddressPerson>().HasMany(a => a.ElectronicServicePaymentInfo)
+            //    .WithOne(e => e.AddressPerson)
+            //    .HasForeignKey(e => e.AddressPersonId);
+
 
             ////seeding
             modelBuilder.Entity<ElectronicService>()
@@ -116,11 +117,11 @@ namespace InternProj.Db
 
 
 
-            modelBuilder.Entity<ElectronicServicePaymentInfo>()
-                .HasData(
-                new ElectronicServicePaymentInfo() { Id = 1, PayerName = "payer name 1", Idnx = "0123456789012", PayerType = PayerType.Pers_Fizica, Amount = 20.2m },
-                new ElectronicServicePaymentInfo() { Id = 2, PayerName = "payer name 2", Idnx = "0123456789013", PayerType = PayerType.Pers_Juridica, Amount = 10.2m }
-                );
+            //modelBuilder.Entity<ElectronicServicePaymentInfo>()
+            //    .HasData(
+            //    new ElectronicServicePaymentInfo() { Id = 1, PayerName = "payer name 1", Idnx = "0123456789012", PayerType = PayerType.Pers_Fizica, Amount = 20.2m },
+            //    new ElectronicServicePaymentInfo() { Id = 2, PayerName = "payer name 2", Idnx = "0123456789013", PayerType = PayerType.Pers_Juridica, Amount = 10.2m }
+            //    );
 
 
             //modelBuilder.Entity<BillingDetails>()

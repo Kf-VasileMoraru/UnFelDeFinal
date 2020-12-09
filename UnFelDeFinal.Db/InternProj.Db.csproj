@@ -4,6 +4,31 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20201209110256_dbOptimization_v.1.cs" />
+    <Compile Remove="Migrations\20201209110256_dbOptimization_v.1.Designer.cs" />
+    <Compile Remove="Migrations\20201209111027_dbOptimization_v.2.cs" />
+    <Compile Remove="Migrations\20201209111027_dbOptimization_v.2.Designer.cs" />
+    <Compile Remove="Migrations\20201209112525_dbOptimization_v.3.cs" />
+    <Compile Remove="Migrations\20201209112525_dbOptimization_v.3.Designer.cs" />
+    <Compile Remove="Migrations\20201209112639_dbOptimization_v.4.cs" />
+    <Compile Remove="Migrations\20201209112639_dbOptimization_v.4.Designer.cs" />
+    <Compile Remove="Migrations\20201209113353_dbOptimization_v.5.cs" />
+    <Compile Remove="Migrations\20201209113353_dbOptimization_v.5.Designer.cs" />
+    <Compile Remove="Migrations\20201209113432_dbOptimization_v.6.cs" />
+    <Compile Remove="Migrations\20201209113432_dbOptimization_v.6.Designer.cs" />
+    <Compile Remove="Migrations\20201209113653_dbOptimization_v.7.cs" />
+    <Compile Remove="Migrations\20201209113653_dbOptimization_v.7.Designer.cs" />
+    <Compile Remove="Migrations\20201209114009_dbOptimization_v.8.cs" />
+    <Compile Remove="Migrations\20201209114009_dbOptimization_v.8.Designer.cs" />
+    <Compile Remove="Migrations\20201209114653_dbOptimization_v.10.cs" />
+    <Compile Remove="Migrations\20201209114653_dbOptimization_v.10.Designer.cs" />
+    <Compile Remove="Migrations\20201209115228_dbOptimization_v.11.cs" />
+    <Compile Remove="Migrations\20201209115228_dbOptimization_v.11.Designer.cs" />
+    <Compile Remove="Migrations\20201209115338_dbOptimization_v.12.cs" />
+    <Compile Remove="Migrations\20201209115338_dbOptimization_v.12.Designer.cs" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.9">
 			<PrivateAssets>all</PrivateAssets>
