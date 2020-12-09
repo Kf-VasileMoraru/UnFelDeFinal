@@ -4,14 +4,16 @@ using InternProj.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternProj.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
-    partial class EServicesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201209125250_dbOptimization_v5")]
+    partial class dbOptimization_v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -337,9 +339,6 @@ namespace InternProj.Db.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AddressPersonId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Amount")
                         .HasColumnType("SMALLMONEY");
 
@@ -364,10 +363,6 @@ namespace InternProj.Db.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressPersonId")
-                        .IsUnique()
-                        .HasFilter("[AddressPersonId] IS NOT NULL");
 
                     b.ToTable("ElectronicServicePaymentInfo");
 
@@ -637,13 +632,6 @@ namespace InternProj.Db.Migrations
                         .HasForeignKey("IbanId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("InternProj.Domain.ElectronicServicePaymentInfo", b =>
-                {
-                    b.HasOne("InternProj.Domain.AddressPerson", "AddressPerson")
-                        .WithOne("ElectronicServicePaymentInfo")
-                        .HasForeignKey("InternProj.Domain.ElectronicServicePaymentInfo", "AddressPersonId");
                 });
 
             modelBuilder.Entity("InternProj.Domain.Iban", b =>

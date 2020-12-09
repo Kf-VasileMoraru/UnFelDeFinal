@@ -4,14 +4,16 @@ using InternProj.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternProj.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
-    partial class EServicesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201209124501_dbOptimization_v3")]
+    partial class dbOptimization_v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,7 +185,7 @@ namespace InternProj.Db.Migrations
                     b.Property<int>("ElectronicServiceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ElectronicServicePaymentInfoId")
+                    b.Property<int?>("ElectronicServicePaymentInfoId")
                         .HasColumnType("int");
 
                     b.Property<int>("IbanId")
@@ -365,9 +367,7 @@ namespace InternProj.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressPersonId")
-                        .IsUnique()
-                        .HasFilter("[AddressPersonId] IS NOT NULL");
+                    b.HasIndex("AddressPersonId");
 
                     b.ToTable("ElectronicServicePaymentInfo");
 
@@ -626,11 +626,9 @@ namespace InternProj.Db.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InternProj.Domain.ElectronicServicePaymentInfo", "ElectronicServicePaymentInfo")
+                    b.HasOne("InternProj.Domain.ElectronicServicePaymentInfo", null)
                         .WithMany("BillingDetails")
-                        .HasForeignKey("ElectronicServicePaymentInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ElectronicServicePaymentInfoId");
 
                     b.HasOne("InternProj.Domain.Iban", "Iban")
                         .WithMany("BillingDetails")
@@ -642,8 +640,8 @@ namespace InternProj.Db.Migrations
             modelBuilder.Entity("InternProj.Domain.ElectronicServicePaymentInfo", b =>
                 {
                     b.HasOne("InternProj.Domain.AddressPerson", "AddressPerson")
-                        .WithOne("ElectronicServicePaymentInfo")
-                        .HasForeignKey("InternProj.Domain.ElectronicServicePaymentInfo", "AddressPersonId");
+                        .WithMany("ElectronicServicePaymentInfo")
+                        .HasForeignKey("AddressPersonId");
                 });
 
             modelBuilder.Entity("InternProj.Domain.Iban", b =>

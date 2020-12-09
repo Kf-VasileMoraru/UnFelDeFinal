@@ -4,14 +4,16 @@ using InternProj.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InternProj.Db.Migrations
 {
     [DbContext(typeof(EServicesDbContext))]
-    partial class EServicesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201209130822_dbOptimization_v9")]
+    partial class dbOptimization_v9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -365,9 +367,7 @@ namespace InternProj.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressPersonId")
-                        .IsUnique()
-                        .HasFilter("[AddressPersonId] IS NOT NULL");
+                    b.HasIndex("AddressPersonId");
 
                     b.ToTable("ElectronicServicePaymentInfo");
 
@@ -642,8 +642,8 @@ namespace InternProj.Db.Migrations
             modelBuilder.Entity("InternProj.Domain.ElectronicServicePaymentInfo", b =>
                 {
                     b.HasOne("InternProj.Domain.AddressPerson", "AddressPerson")
-                        .WithOne("ElectronicServicePaymentInfo")
-                        .HasForeignKey("InternProj.Domain.ElectronicServicePaymentInfo", "AddressPersonId");
+                        .WithMany("ElectronicServicePaymentInfo")
+                        .HasForeignKey("AddressPersonId");
                 });
 
             modelBuilder.Entity("InternProj.Domain.Iban", b =>

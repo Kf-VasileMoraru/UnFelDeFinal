@@ -15,7 +15,7 @@ namespace InternProj.Domain
 
         //navigation property
 
-        //public virtual ICollection<ElectronicServicePaymentInfo> ElectronicServicePaymentInfo { get; set; }
+        public virtual ElectronicServicePaymentInfo ElectronicServicePaymentInfo { get; set; }
     }
 
 }
