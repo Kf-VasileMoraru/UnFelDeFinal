@@ -1,9 +1,12 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace InternProj.Domain
+namespace InternProj.WebApi.Extern.Dtos.CityHall
 {
-    public class AddressContactCityHall : BaseEntity
+    public class AddressContactCityHallDto
     {
         public string City { get; set; }
         public string StreetHouseNumber { get; set; }
@@ -17,10 +20,5 @@ namespace InternProj.Domain
         public string Web0 { get; set; }
         public string Web1 { get; set; }
         public string Web2 { get; set; }
-
-        public int? CityHallId { get; set; }
-
-        //navigation property
-        public virtual CityHall CityHall { get; set; }
     }
 }

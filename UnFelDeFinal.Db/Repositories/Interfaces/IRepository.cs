@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using InternProj.Domain;
 
-namespace InternProj.WebApi.Services
+namespace InternProj.Db.Repositories.Interfaces
 {
     public interface IRepository<T> where T : BaseEntity
     {

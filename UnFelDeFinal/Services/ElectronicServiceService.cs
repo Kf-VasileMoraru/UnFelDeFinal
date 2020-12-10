@@ -10,6 +10,7 @@ using InternProj.WebApi.Exceptions;
 using InternProj.Extern.Dtos;
 using InternProj.Models;
 using InternProj.WebApi.Services;
+using InternProj.Db.Repositories.Interfaces;
 
 namespace InternProj.WebApi.Services
 {

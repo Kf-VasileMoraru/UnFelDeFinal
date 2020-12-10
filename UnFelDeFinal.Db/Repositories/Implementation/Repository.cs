@@ -4,13 +4,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using InternProj.Db;
 using InternProj.Domain;
+using InternProj.Db.Repositories.Interfaces;
 
-namespace InternProj.WebApi.Services
+namespace InternProj.Db.Repositories.Implementation
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly EServicesDbContext _dbContext;
-        private readonly DbSet<T> _dbSet;
+        protected readonly EServicesDbContext _dbContext;
+        protected readonly DbSet<T> _dbSet;
 
         public Repository(EServicesDbContext dbContext)
         {

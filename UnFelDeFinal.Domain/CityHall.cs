@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace InternProj.Domain
@@ -11,8 +12,8 @@ namespace InternProj.Domain
     public class CityHall : BaseEntity
     {
 
-        [StringLength(50, MinimumLength = 5,
-        ErrorMessage = "CityHall Name should be minimum 3 characters and a maximum of 50 characters")]
+        [StringLength(450, MinimumLength = 5,
+        ErrorMessage = "CityHall Name should be minimum 5 characters and a maximum of 50 characters")]
         [DataType(DataType.Text)]
         [Required]
         public string Name { get; set; }
