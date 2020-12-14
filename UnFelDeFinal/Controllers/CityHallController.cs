@@ -25,14 +25,59 @@ namespace InternProj.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetCityHallById(int id)
         {
             var cityHall = cityHallService.GetCityHallById(id);
             if (cityHall == null)
                 return NotFound();
 
-            //var result = mapper.Map<ElectronicServiceDto>(eService);
-            return Ok(cityHall);
+
+            var result = mapper.Map<CityHallDto>(cityHall);
+
+            return Ok(result);
+        }
+
+        [HttpGet("getAllCityHall")]
+        public IActionResult Get([FromQuery] FilterOptions filterOptions)
+        {
+            var cityHalls = cityHallService.GetAllCityHall();
+            var result = cityHalls.Select(cityHalls => mapper.Map<CityHallDto>(cityHalls));
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCityHallById(int id)
+        {
+            var isDeleted = cityHallService.DeleteCityHallById(id);
+
+            return NoContent();
+        }
+
+
+        [HttpPost]
+        public IActionResult Post([FromBody] CreateCityHallDto dto)
+        {
+            var cityHall = cityHallService.AddNewCityHall(dto);
+
+            if (cityHall == null)
+                return BadRequest("CityHall with such name already exists");
+
+            var result = mapper.Map<CityHallDto>(cityHall);
+
+            return CreatedAtAction(nameof(Get), new { id = cityHall.Id }, result);
+        }
+
+        [HttpPut("{id}")]
+        [ApiExceptionFilter]
+        public IActionResult Put(int id, [FromBody] CreateCityHallDto dto)
+        {
+            var eService = cityHallService.UpdateCityhall(id, dto);
+
+            if (eService == null)
+                return BadRequest("Did not found such CityHall Service");
+
+            return NoContent();
         }
 
 

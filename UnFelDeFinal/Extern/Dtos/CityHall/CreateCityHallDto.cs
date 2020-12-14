@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InternProj.WebApi.Extern.Dtos.CityHall;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,14 +15,9 @@ namespace InternProj.Extern.Dtos
         public string Name { get; set; }
         
         [Required]
-        [Range(1, 10000, ErrorMessage = "Suma min 1 to 1000 lei")]
-        public decimal Amount { get; set; }
-
-        [StringLength(15, MinimumLength = 5, ErrorMessage = "Name min 5 to max 15 char")]
-        public string TreasureAccount { get; set; }
-        public string Details { get; set; }
+        public string BanckAccount { get; set; }
         
         [Required]
-        public string Label { get; set; }
+        public List<CreateAddressContactCityHallDto> AddressCityHall { get; set; }
     }
 }

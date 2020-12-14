@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InternProj.Domain;
 using InternProj.Extern.Dtos;
+using InternProj.WebApi.Extern.Dtos.CityHall;
 
 namespace InternProj.Extern.Mappings
 {
@@ -13,8 +14,18 @@ namespace InternProj.Extern.Mappings
     {
         public EServiceMappingProfile()
         {
-            CreateMap<ElectronicService, ElectronicServiceDto>();
             CreateMap<CreateElectronicServiceDto, ElectronicService>();
+            CreateMap<ElectronicService, ElectronicServiceDto>();
+
+
+            CreateMap<CreateCityHallDto, CityHall>();
+            CreateMap<CityHall, CityHallDto>();
+
+            CreateMap<CreateAddressContactCityHallDto, AddressContactCityHall>();
+            CreateMap<AddressContactCityHall, AddressContactCityHallDto>();
+
+
+
         }
     }
 }

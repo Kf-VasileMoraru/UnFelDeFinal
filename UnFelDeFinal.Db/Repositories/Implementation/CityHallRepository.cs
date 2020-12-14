@@ -20,24 +20,29 @@ namespace InternProj.Db.Repositories.Implementation
 
         public CityHall GetCityHallIdWithAdressCityHall(int cityHallId)
         {
-            var x = _dbSet.AsNoTracking()
-                       
-                       .FirstOrDefault(x => x.Id == cityHallId);
+            var cityHall = _dbSet.AsNoTracking()
+                        .Include(x => x.AddressCityHall)
+                        .Where(x=>x.IsDeleted==false)
+                        .FirstOrDefault(x => x.Id == cityHallId);
 
-           
-            var y = new CityHall
-           {
-               Id = x.Id,
-               Name = x.Name,
-               BanckAccount = x.BanckAccount,
-               AddressCityHall = x.AddressCityHall
-
-            };
-
-
-
-
-            return y;
+            return cityHall;
         }
+
+        public IQueryable<CityHall> GetAllCityHall()
+        {
+            var cityHalls = _dbSet.AsNoTracking()
+                        .Include(x => x.AddressCityHall)
+                        .Where(x => x.IsDeleted == false);
+
+            return cityHalls;
+        }
+
+        public new void Delete(CityHall entity)
+        {
+            entity.IsDeleted = true;
+        }
+
+
+
     }
 }

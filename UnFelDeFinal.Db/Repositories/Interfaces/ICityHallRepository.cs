@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace InternProj.Db.Repositories.Interfaces
 {
-    public interface ICityHallRepository
+    public interface ICityHallRepository : IRepository<CityHall>
     {
         CityHall GetCityHallIdWithAdressCityHall(int cityHallId);
+        IQueryable<CityHall> GetAllCityHall();
     }
 }

@@ -9,9 +9,10 @@ namespace InternProj.Extern.Dtos
 {
     public class CityHallDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public decimal BanckAccount { get; set; }
+        public string BanckAccount { get; set; }
 
-        public List<AddressContactCityHallDto> AddressContactCityHall { get; set; }
+        public List<AddressContactCityHallDto> AddressCityHall { get; set; }
     }
 }

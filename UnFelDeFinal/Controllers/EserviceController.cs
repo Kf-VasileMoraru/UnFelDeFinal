@@ -62,10 +62,6 @@ namespace InternProj.WebApi.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = eService.Id }, result);
         }
-        //		TreasureAccount	"aaaaaadfa"	string
-        //      TreasureAccount	"aaaaaadfa"	string
-
-
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]

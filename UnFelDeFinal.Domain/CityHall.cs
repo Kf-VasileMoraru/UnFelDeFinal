@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace InternProj.Domain
 {
@@ -21,6 +22,9 @@ namespace InternProj.Domain
         // [MaxLength(20)]
         [Column(TypeName = "varchar(20)")]
         public string BanckAccount { get; set; }
+       
+        [DefaultValue(false)]
+        public bool IsDeleted { get; set; }
 
 
         //navigation property
