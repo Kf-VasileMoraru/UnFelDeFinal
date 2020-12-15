@@ -13,12 +13,12 @@ namespace InternProj.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EserviceController : ControllerBase
+    public class ElectronicServiceController : ControllerBase
     {
         private readonly IElectronicServiceService eServiceService;
         private readonly IMapper mapper;
 
-        public EserviceController(IElectronicServiceService eServiceService, IMapper mapper )
+        public ElectronicServiceController(IElectronicServiceService eServiceService, IMapper mapper )
         {
             this.eServiceService = eServiceService;
             this.mapper = mapper;
@@ -56,7 +56,7 @@ namespace InternProj.WebApi.Controllers
             var eService = eServiceService.AddNewEservice(dto);
 
             if (eService == null)
-                return BadRequest("Service with such Trez already exists");
+                return NotFound("Service with such Trez already exists");
 
             var result = mapper.Map<ElectronicServiceDto>(eService);
 
@@ -71,7 +71,7 @@ namespace InternProj.WebApi.Controllers
             var eService = eServiceService.UpdateElectronicServiceDetails(id, dto);
 
             if (eService == null)
-                return BadRequest("Did not found such Electronic Service"); // TODO: Do this later 1
+                return NotFound("Did not found such Electronic Service");
 
             return NoContent();
         }

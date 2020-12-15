@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using InternProj.Db;
 using InternProj.Domain;
 using InternProj.Db.Repositories.Interfaces;
+using System.Collections.Generic;
 
 namespace InternProj.Db.Repositories.Implementation
 {
@@ -19,16 +20,6 @@ namespace InternProj.Db.Repositories.Implementation
             _dbSet = dbContext.Set<T>();
         }
 
-        public void Add(T entity)
-        {
-            _dbSet.Add(entity);
-        }
-
-        public void Delete(T entity)
-        {
-            _dbSet.Remove(entity);
-        }
-
         public T Find(int id)
         {
             return _dbSet.AsNoTracking().FirstOrDefault(x => x.Id == id);
@@ -39,14 +30,36 @@ namespace InternProj.Db.Repositories.Implementation
             return _dbSet.FirstOrDefault(predicate);
         }
 
-        public IQueryable<T> FindAll(Expression<Func<T, bool>> predicate)
+        public IList<T> FindAll(Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.Where(predicate);
+            IQueryable<T> data = _dbSet.Where(predicate);
+            return data.ToList();
         }
 
-        public IQueryable<T> GetAll()
+        public IList<T> GetAll()
         {
-            return _dbSet.OrderByDescending(x => x.Id);
+            IQueryable<T> data = _dbSet;
+
+            return data.ToList();
+        }
+
+        public void Add(T entity)
+        {
+            _dbSet.Add(entity);
+            Save();
+        }
+
+        public void Delete(T entity)
+        {
+            _dbSet.Remove(entity);
+            Save();
+        }
+
+        public T Update(T entity)
+        {
+            T t = _dbSet.Update(entity).Entity;
+            Save();
+            return t;
         }
 
         public void Save()
@@ -54,9 +67,6 @@ namespace InternProj.Db.Repositories.Implementation
             _dbContext.SaveChanges();
         }
 
-        public T Update(T entity)
-        {
-            return _dbSet.Update(entity).Entity;
-        }
+
     }
 }

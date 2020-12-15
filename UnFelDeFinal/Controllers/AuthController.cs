@@ -11,8 +11,8 @@ namespace InternProj.WebApi.Controllers
     public class AuthController : ControllerBase
     {
 
-        private IUserService userService;
-        public AuthController(IUserService userService)
+        private IAuthService userService;
+        public AuthController(IAuthService userService)
         {
             this.userService = userService;
         }
@@ -26,12 +26,14 @@ namespace InternProj.WebApi.Controllers
                 var result = await userService.RegisterUserAsync(dto);
 
                 if (result.IsSuccess)
-                    return Ok(result); // Status Code: 200 
+                {
+                    return Ok(result);
+                }
 
-                return BadRequest(result);
+                return NotFound(result);
             }
 
-            return BadRequest("Some properties are not valid"); // Status code: 400
+            return NotFound("Some properties are not valid");
         }
 
         // /api/auth/login
@@ -47,10 +49,10 @@ namespace InternProj.WebApi.Controllers
                     return Ok(result);
                 }
 
-                return BadRequest(result);
+                return NotFound(result);
             }
 
-            return BadRequest("Some properties are not valid");
+            return NotFound("Some properties are not valid");
         }
 
 

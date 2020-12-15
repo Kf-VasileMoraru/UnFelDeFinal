@@ -27,25 +27,7 @@ namespace InternProj.WebApi.Controllers
         }
 
 
-        //[HttpGet("CreateRole")]
-        //public async Task CreateRole()
-        //{
-        //    IdentityRole identityRole1 = new IdentityRole
-        //    {
-        //        Name = "Admin"
-        //    };
-        //    IdentityRole identityRole2 = new IdentityRole
-        //    {
-        //        Name = "CityHallAdmin"
-        //    };
-
-        //    await roleManager.CreateAsync(identityRole1);
-        //    await roleManager.CreateAsync(identityRole2);
-
-        //}
-
-
-        [HttpGet("ListRoles")]
+        [HttpGet("listRoles")]
         public IActionResult ListRoles()
         {
             var roleList = roleManager.Roles
@@ -56,13 +38,14 @@ namespace InternProj.WebApi.Controllers
         }
 
 
-        [HttpGet("ListUsersCount")]
+        [HttpGet("listUsersCount")]
         public IActionResult ListUsersCount()
         {
             return Ok(userManager.Users.Count());
         }
 
-        [HttpGet("GetUsersByRole")]
+
+        [HttpGet("getUsersByRole")]
         public async Task<IActionResult> GetUsersByRole(string roleName)
         {
 
@@ -70,7 +53,7 @@ namespace InternProj.WebApi.Controllers
 
             if (role == null)
             {
-                return BadRequest("Role id is not valid");
+                return NotFound("Role id is not valid");
             }
 
             var dto = new List<UserRoleDto>();
@@ -102,7 +85,7 @@ namespace InternProj.WebApi.Controllers
         }
 
 
-        [HttpGet("GetUserByEmail")]
+        [HttpGet("getUserByEmail")]
         public async Task<IActionResult> GetUserByEmail(string userEmail, string roleName)
         {
 
@@ -110,7 +93,7 @@ namespace InternProj.WebApi.Controllers
 
             if (user == null)
             {
-                return BadRequest("User email is not valid");
+                return NotFound("User email is not valid");
             }
 
             var dto = new UserRoleDto
@@ -126,24 +109,27 @@ namespace InternProj.WebApi.Controllers
             return Ok(dto);
         }
 
-        [HttpPost("ToggleUserCityHallAdminRole")]
+        [HttpPost("toggleUserCityHallAdminRole")]
         public async Task<IActionResult> ToggleUserCityHallAdminRole([FromBody] ToggleUserCityHallAdminRole dto)
         {
             var user = await userManager.FindByEmailAsync(dto.UserEmail);
 
             if (user == null)
             {
-                return BadRequest("User email is not valid");
+                return NotFound("User email is not valid");
             }
 
-            if (dto.Add) { await userManager.RemoveFromRoleAsync(user, "CityHallAdmin"); } else { await userManager.AddToRoleAsync(user, "CityHallAdmin"); }
-
+            if (dto.Add) { 
+                await userManager.RemoveFromRoleAsync(user, "CityHallAdmin"); 
+            } else { 
+                await userManager.AddToRoleAsync(user, "CityHallAdmin"); 
+            }
 
             return Ok();
         }
 
 
-        [HttpGet("EditUsersInRole")]
+        [HttpGet("editUsersInRole")]
         public async Task<IActionResult> EditUsersInRole(string roleId)
         {
 
@@ -151,7 +137,7 @@ namespace InternProj.WebApi.Controllers
 
             if (role == null)
             {
-                return BadRequest("Role id is not valid");
+                return NotFound("Role id is not valid");
             }
 
             var dto = new List<UserRoleDto>();
@@ -183,7 +169,7 @@ namespace InternProj.WebApi.Controllers
         }
 
 
-        [HttpPost("EditUsersInRole")]
+        [HttpPost("editUsersInRole")]
         public async Task<IActionResult> EditUsersInRole(List<UserRoleDto> dto, string roleId)
         {
             var role = await roleManager.FindByIdAsync(roleId);

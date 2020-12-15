@@ -15,36 +15,45 @@ using InternProj.Db.Repositories.Implementation;
 
 namespace InternProj.WebApi.Services
 {
-    public class IbanService
+    public class BankAccountService
     {
         private readonly IbanRepository ibanRepository;
         private readonly IMapper mapper;
 
-        public IbanService(IbanRepository ibanRepository, IMapper mapper)
+        public BankAccountService(IbanRepository ibanRepository, IMapper mapper)
         {
             this.ibanRepository = ibanRepository;
             this.mapper = mapper;
         }
 
-        public Iban GetIbanById(int id)
+        public Iban GetBankAccountById(int id)
         {
             return ibanRepository.GetIbanByIdWithCityHallAndElectronicService(id);
         }
 
-        public IList<Iban> GetIban(FilterOptions filterOptions)
+        public IList<Iban> GetBankAccountsOfCityHall(FilterOptions filterOptions)
         {
-            IQueryable<Iban> iban;
+            IList<Iban> ibans;
+            int searchTerm;
 
             if (!string.IsNullOrWhiteSpace(filterOptions.SearchTerm))
             {
-                iban = ibanRepository.FindWithFilter(filterOptions.SearchTerm);
+                bool success = Int32.TryParse(filterOptions.SearchTerm, out searchTerm);
+
+                if (success)
+                {
+                    ibans = ibanRepository.GetIbansOfCityHall(searchTerm);
+                    return ibans;
+                }
+
+                return null;
             }
             else
             {
-                iban = ibanRepository.GetAll();
+                ibans = ibanRepository.GetAll();
             }
 
-            return iban.ToList();
+            return ibans;
         }
     }
 }

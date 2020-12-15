@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InternProj.WebApi.Extern.Dtos.Iban
 {
-    public class IbanDto
+    public class BankAccountDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

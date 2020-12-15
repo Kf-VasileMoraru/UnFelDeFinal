@@ -10,8 +10,8 @@ namespace InternProj.Db.Repositories.Implementation
 {
 
 
-        public class IbanRepository : Repository<Iban> //, ICityHallRepository
-        {
+    public class IbanRepository : Repository<Iban> //, ICityHallRepository
+    {
         public IbanRepository(EServicesDbContext dbContext) : base(dbContext)
         {
 
@@ -28,15 +28,13 @@ namespace InternProj.Db.Repositories.Implementation
             return iban;
         }
 
-        public IQueryable<Iban> FindWithFilter(string searchTerm)
+        public IList<Iban> GetIbansOfCityHall(int searchTerm)
         {
-            var listIban = _dbSet.Where(x => x.CityHallId == Int32.Parse(searchTerm))
+            var listIban = _dbSet.Where(x => x.CityHallId == searchTerm)
                 .Include(x => x.ElectronicService)
                 .Include(x => x.CityHall);
 
-
-
-            return listIban;
+            return listIban.ToList();
         }
     }
 }

@@ -7,7 +7,7 @@ using InternProj.WebApi.Extern.Dtos.Auth;
 
 namespace InternProj.WebApi.Services
 {
-    public interface IUserService
+    public interface IAuthService
     {
         Task<UserManagerResponseDto> RegisterUserAsync(RegisterDto model);
 

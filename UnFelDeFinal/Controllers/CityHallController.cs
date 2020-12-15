@@ -15,7 +15,7 @@ namespace InternProj.WebApi.Controllers
     [ApiController]
     public class CityHallController : ControllerBase
     {
-        private readonly  ICityHallService cityHallService;
+        private readonly ICityHallService cityHallService;
         private readonly IMapper mapper;
 
         public CityHallController(ICityHallService cityHallService, IMapper mapper)
@@ -29,8 +29,9 @@ namespace InternProj.WebApi.Controllers
         {
             var cityHall = cityHallService.GetCityHallById(id);
             if (cityHall == null)
+            {
                 return NotFound();
-
+            }
 
             var result = mapper.Map<CityHallDto>(cityHall);
 
@@ -49,7 +50,7 @@ namespace InternProj.WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteCityHallById(int id)
         {
-            var isDeleted = cityHallService.DeleteCityHallById(id);
+            cityHallService.DeleteCityHallById(id);
 
             return NoContent();
         }
@@ -61,7 +62,9 @@ namespace InternProj.WebApi.Controllers
             var cityHall = cityHallService.AddNewCityHall(dto);
 
             if (cityHall == null)
-                return BadRequest("CityHall with such name already exists");
+            {
+                return NotFound("CityHall with such name already exists");
+            }
 
             var result = mapper.Map<CityHallDto>(cityHall);
 
@@ -75,7 +78,9 @@ namespace InternProj.WebApi.Controllers
             var eService = cityHallService.UpdateCityhall(id, dto);
 
             if (eService == null)
-                return BadRequest("Did not found such CityHall Service");
+            {
+                return NotFound("Did not found such CityHall Service");
+            }
 
             return NoContent();
         }

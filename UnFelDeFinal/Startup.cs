@@ -91,12 +91,12 @@ namespace InternProj.WebApi
 
             services.AddAutoMapper(typeof(EServiceMappingProfile));
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); //typeof tipa sa nu scriem cu mana
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); 
             services.AddScoped<IElectronicServiceService, ElectronicServiceService>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICityHallService, CityHallService>();
             services.AddScoped<ICityHallRepository, CityHallRepository>();
-            services.AddScoped<IbanService, IbanService>();
+            services.AddScoped<BankAccountService, BankAccountService>();
             services.AddScoped<IbanRepository, IbanRepository>();
 
 

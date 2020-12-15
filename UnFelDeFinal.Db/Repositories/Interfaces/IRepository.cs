@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using InternProj.Domain;
@@ -11,7 +12,8 @@ namespace InternProj.Db.Repositories.Interfaces
 
         T Find(Expression<Func<T, bool>> predicate);
 
-        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate);
+        IList<T> FindAll(Expression<Func<T, bool>> predicate);
+        IList<T> GetAll();
 
         void Delete(T entity);
 
@@ -19,7 +21,7 @@ namespace InternProj.Db.Repositories.Interfaces
 
         T Update(T entity);
 
-        IQueryable<T> GetAll();
+
 
         void Save();
     }

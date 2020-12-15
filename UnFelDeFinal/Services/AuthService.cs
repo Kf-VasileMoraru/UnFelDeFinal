@@ -12,11 +12,11 @@ using InternProj.Domain;
 
 namespace InternProj.WebApi.Services
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
         private UserManager<ApplicationUser> userManger;
         private IConfiguration configuration;
-        public UserService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
+        public AuthService(UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             this.userManger = userManager;
             this.configuration = configuration;

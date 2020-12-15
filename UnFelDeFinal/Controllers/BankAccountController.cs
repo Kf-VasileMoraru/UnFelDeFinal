@@ -14,13 +14,13 @@ namespace InternProj.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IbanController : ControllerBase
+    public class BankAccountController : ControllerBase
     {
 
-        private readonly IbanService ibanService;
+        private readonly BankAccountService ibanService;
         private readonly IMapper mapper;
 
-        public IbanController(IbanService ibanService, IMapper mapper)
+        public BankAccountController(BankAccountService ibanService, IMapper mapper)
         {
             this.ibanService = ibanService;
             this.mapper = mapper;
@@ -29,22 +29,28 @@ namespace InternProj.WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var iban = ibanService.GetIbanById(id);
-            if (iban == null)
+            var bankAccount = ibanService.GetBankAccountById(id);
+            if (bankAccount == null)
+            {
                 return NotFound();
+            }
 
-            var result = mapper.Map<IbanDto>(iban);
+            var result = mapper.Map<BankAccountDto>(bankAccount);
             return Ok(result);
         }
 
         [HttpGet]
         public IActionResult Get([FromQuery] FilterOptions filterOptions)
         {
-            var iban = ibanService.GetIban(filterOptions);
+            var bankAccounts = ibanService.GetBankAccountsOfCityHall(filterOptions);
+            if (bankAccounts == null)
+            {
+                return NotFound();
+            }
 
-            var result = iban.Select(x => mapper.Map<IbanDto>(iban));
+            //var result = iban.Select(x => mapper.Map<IbanDto>(iban));
 
-            return Ok(result);
+            return Ok(bankAccounts);
         }
 
     }

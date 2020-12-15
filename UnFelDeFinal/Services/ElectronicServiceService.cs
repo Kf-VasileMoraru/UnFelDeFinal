@@ -32,7 +32,7 @@ namespace InternProj.WebApi.Services
 
         public IList<ElectronicService> GetEservice(FilterOptions filterOptions)
         {
-            IQueryable<ElectronicService> eservices;
+            IList<ElectronicService> eservices;
 
             if (!string.IsNullOrWhiteSpace(filterOptions.SearchTerm))
             {
@@ -43,17 +43,7 @@ namespace InternProj.WebApi.Services
                 eservices = eseviceRepository.GetAll();
             }
 
-            switch (filterOptions.Order)
-            {
-                case SortOrder.Ascending:
-                    eservices = eservices.OrderByDescending(e => e.Id);
-                    break;
-                case SortOrder.Descending:
-                    eservices = eservices.OrderBy(e => e.Id);
-                    break;
-            }
-
-            return eservices.ToList();
+            return eservices;
         }
 
         public ElectronicService AddNewEservice(CreateElectronicServiceDto dto)
@@ -64,16 +54,7 @@ namespace InternProj.WebApi.Services
 
             var eservice = mapper.Map<ElectronicService>(dto);
 
-            //var employee = new Employee
-            //{
-            //    Idnp = createEmployeeDto.Idnp,
-            //    Name = createEmployeeDto.Name,
-            //    Position = createEmployeeDto.Position,
-            //    Salary = createEmployeeDto.Salary
-            //};
-
             eseviceRepository.Add(eservice);
-            eseviceRepository.Save();
             return eservice;
         }
 
@@ -81,32 +62,28 @@ namespace InternProj.WebApi.Services
         {
             var eservice = eseviceRepository.Find(id);
             if (eservice == null)
-                throw new NotFoundException("Electornic Service not found!");
+            { 
+                throw new NotFoundException("Electornic Service not found!"); 
+            }
 
             eservice = mapper.Map<ElectronicService>(dto);
-
-            ////TODO: Do this later 2
-            //eservice.Amount = dto.Amount;
-            //eservice.TreasureAccount = dto.TreasureAccount;
-            //eservice.Name = dto.Name;
-            //eservice.Details = dto.Details;
             eservice.Id = id;
 
             eseviceRepository.Update(eservice);
-            eseviceRepository.Save();
             return eservice;
         }
 
         public bool RemoveElectronicServiceById(int id)
         {
             var eservice = eseviceRepository.Find(id);
-            if (eservice != null)
+
+            if (eservice == null)
             {
-                eseviceRepository.Delete(eservice);
-                eseviceRepository.Save();
-                return true;
+                return false;
             }
-            else return false;
+
+            eseviceRepository.Delete(eservice);
+            return true;
         }
 
 
