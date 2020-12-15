@@ -94,8 +94,12 @@ namespace InternProj.WebApi
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); //typeof tipa sa nu scriem cu mana
             services.AddScoped<IElectronicServiceService, ElectronicServiceService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<CityHallService, CityHallService>();
+            services.AddScoped<ICityHallService, CityHallService>();
             services.AddScoped<ICityHallRepository, CityHallRepository>();
+            services.AddScoped<IbanService, IbanService>();
+            services.AddScoped<IbanRepository, IbanRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

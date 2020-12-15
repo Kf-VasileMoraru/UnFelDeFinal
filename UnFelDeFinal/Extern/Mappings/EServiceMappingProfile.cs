@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using InternProj.Domain;
 using InternProj.Extern.Dtos;
 using InternProj.WebApi.Extern.Dtos.CityHall;
+using InternProj.WebApi.Extern.Dtos.Iban;
 
 namespace InternProj.Extern.Mappings
 {
@@ -24,8 +25,8 @@ namespace InternProj.Extern.Mappings
             CreateMap<CreateAddressContactCityHallDto, AddressContactCityHall>();
             CreateMap<AddressContactCityHall, AddressContactCityHallDto>();
 
-
-
+            CreateMap<Iban, IbanDto>().ForMember(dto => dto.CityHall, iban => iban.MapFrom(src => src.CityHall.Name))
+                                      .ForMember(dto => dto.ElectronicService, iban => iban.MapFrom(src => src.ElectronicService.Name));
         }
     }
 }

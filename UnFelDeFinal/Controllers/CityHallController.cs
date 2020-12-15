@@ -15,10 +15,10 @@ namespace InternProj.WebApi.Controllers
     [ApiController]
     public class CityHallController : ControllerBase
     {
-        private readonly  CityHallService cityHallService;
+        private readonly  ICityHallService cityHallService;
         private readonly IMapper mapper;
 
-        public CityHallController(CityHallService cityHallService, IMapper mapper)
+        public CityHallController(ICityHallService cityHallService, IMapper mapper)
         {
             this.cityHallService = cityHallService;
             this.mapper = mapper;

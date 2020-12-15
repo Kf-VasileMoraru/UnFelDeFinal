@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace InternProj.WebApi.Services
 {
-    public class CityHallService
+    public class CityHallService : ICityHallService
     {
         private readonly ICityHallRepository cityHallRepository;
         private readonly IMapper mapper;
