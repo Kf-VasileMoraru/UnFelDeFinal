@@ -8,7 +8,7 @@ namespace InternProj.WebApi.Services
     {
         CityHall AddNewCityHall(CreateCityHallDto dto);
         bool DeleteCityHallById(int id);
-        IList<CityHall> GetAllCityHall();
+        IList<CityHall> GetAllCityHalls();
         CityHall GetCityHallById(int id);
         CityHall UpdateCityhall(int id, CreateCityHallDto dto);
     }

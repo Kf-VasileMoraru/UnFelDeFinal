@@ -68,7 +68,7 @@ namespace InternProj.WebApi.Controllers
         [ApiExceptionFilter]
         public IActionResult Put(int id, [FromBody] CreateElectronicServiceDto dto)
         {
-            var eService = eServiceService.UpdateElectronicServiceDetails(id, dto);
+            var eService = eServiceService.UpdateElectronicService(id, dto);
 
             if (eService == null)
                 return NotFound("Did not found such Electronic Service");

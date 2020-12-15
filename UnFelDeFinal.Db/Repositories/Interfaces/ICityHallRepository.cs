@@ -9,7 +9,7 @@ namespace InternProj.Db.Repositories.Interfaces
 {
     public interface ICityHallRepository : IRepository<CityHall>
     {
-        CityHall GetCityHallIdWithAdressCityHall(int cityHallId);
-        IQueryable<CityHall> GetAllCityHall();
+        CityHall GetCityHallById(int cityHallId);
+        IList<CityHall> GetAllCityHalls();
     }
 }

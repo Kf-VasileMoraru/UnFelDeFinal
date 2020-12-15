@@ -25,24 +25,19 @@ namespace InternProj.WebApi.Services
 
         public CityHall GetCityHallById(int id)
         {
-            CityHall cityHall = cityHallRepository.GetCityHallIdWithAdressCityHall(id);
+            CityHall cityHall = cityHallRepository.GetCityHallById(id);
 
             return cityHall;
         }
 
-        public IList<CityHall> GetAllCityHall()
+        public IList<CityHall> GetAllCityHalls()
         {
-            IQueryable<CityHall> cityHall;
-
-            cityHall = cityHallRepository.GetAllCityHall();
-
-            return cityHall.ToList();
+            return cityHallRepository.GetAllCityHalls();
         }
 
         public bool DeleteCityHallById(int id)
         {
-            var cityHall = cityHallRepository.GetCityHallIdWithAdressCityHall(id);
-
+            var cityHall = cityHallRepository.GetCityHallById(id);
 
             if (cityHall == null)
             {
@@ -50,8 +45,7 @@ namespace InternProj.WebApi.Services
             }
 
             cityHallRepository.Delete(cityHall);
-            cityHallRepository.Update(cityHall);
-            cityHallRepository.Save();
+
             return true;
         }
 
@@ -63,7 +57,6 @@ namespace InternProj.WebApi.Services
             var cityHall = mapper.Map<CityHall>(dto);
 
             cityHallRepository.Add(cityHall);
-            cityHallRepository.Save();
 
             return cityHall;
         }
@@ -80,14 +73,26 @@ namespace InternProj.WebApi.Services
             cityHall.Id = id;
 
             cityHallRepository.Update(cityHall);
-            cityHallRepository.Save();
+
             return cityHall;
         }
 
 
         private bool CheckIfCityHallExist(string name)
         {
-            return cityHallRepository.Find(x => x.Name == name) != null;
+            var cityHall = cityHallRepository.Find(x => x.Name == name);
+
+            if (cityHall == null)
+            {
+                return false;
+            }
+
+            if (cityHall.IsDeleted)
+            {
+                return false;
+            }
+
+            return true;
         }
 
     }

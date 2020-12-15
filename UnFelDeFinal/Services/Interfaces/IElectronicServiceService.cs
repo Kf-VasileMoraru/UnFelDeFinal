@@ -11,6 +11,6 @@ namespace InternProj.WebApi.Services
         IList<ElectronicService> GetEservice(FilterOptions filterOptions);
         ElectronicService GetEserviceById(int id);
         bool RemoveElectronicServiceById(int id);
-        ElectronicService UpdateElectronicServiceDetails(int id, CreateElectronicServiceDto dto);
+        ElectronicService UpdateElectronicService(int id, CreateElectronicServiceDto dto);
     }
 }

@@ -58,7 +58,7 @@ namespace InternProj.WebApi.Services
             return eservice;
         }
 
-        public ElectronicService UpdateElectronicServiceDetails(int id, CreateElectronicServiceDto dto)
+        public ElectronicService UpdateElectronicService(int id, CreateElectronicServiceDto dto)
         {
             var eservice = eseviceRepository.Find(id);
             if (eservice == null)

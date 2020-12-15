@@ -1,4 +1,5 @@
-﻿using InternProj.WebApi.Extern.Dtos.CityHall;
+﻿using InternProj.Domain;
+using InternProj.WebApi.Extern.Dtos.CityHall;
 using System;
 using System.Collections.Generic;
 using System.Linq;

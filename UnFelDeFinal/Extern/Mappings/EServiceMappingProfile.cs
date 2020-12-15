@@ -23,6 +23,7 @@ namespace InternProj.Extern.Mappings
             CreateMap<CityHall, CityHallDto>();
 
             CreateMap<CreateAddressContactCityHallDto, AddressContactCityHall>();
+            
             CreateMap<AddressContactCityHall, AddressContactCityHallDto>();
 
             CreateMap<Iban, BankAccountDto>().ForMember(dto => dto.CityHall, iban => iban.MapFrom(src => src.CityHall.Name))

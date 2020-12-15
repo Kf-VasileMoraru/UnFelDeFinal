@@ -8,6 +8,7 @@ using InternProj.WebApi.Exceptions;
 using InternProj.Extern.Dtos;
 using InternProj.Models;
 using InternProj.WebApi.Services;
+using InternProj.Domain;
 
 namespace InternProj.WebApi.Controllers
 {
@@ -41,8 +42,14 @@ namespace InternProj.WebApi.Controllers
         [HttpGet("getAllCityHall")]
         public IActionResult Get([FromQuery] FilterOptions filterOptions)
         {
-            var cityHalls = cityHallService.GetAllCityHall();
-            var result = cityHalls.Select(cityHalls => mapper.Map<CityHallDto>(cityHalls));
+            var cityHalls = cityHallService.GetAllCityHalls();
+
+            //foreach(CityHall cityHall in cityHalls)
+            //{
+            //    cityHall.AddressCityHall = cityHall.AddressCityHall.Reverse().ToArray();
+            //}
+
+            var result = cityHalls.Select(cityHall => mapper.Map<CityHallDto>(cityHall));
 
             return Ok(result);
         }

@@ -18,31 +18,30 @@ namespace InternProj.Db.Repositories.Implementation
         }
 
 
-        public CityHall GetCityHallIdWithAdressCityHall(int cityHallId)
+        public CityHall GetCityHallById(int cityHallId)
         {
             var cityHall = _dbSet.AsNoTracking()
                         .Include(x => x.AddressCityHall)
-                        .Where(x=>x.IsDeleted==false)
+                        .Where(x => x.IsDeleted == false)
                         .FirstOrDefault(x => x.Id == cityHallId);
 
             return cityHall;
         }
 
-        public IQueryable<CityHall> GetAllCityHall()
+        public IList<CityHall> GetAllCityHalls()
         {
-            var cityHalls = _dbSet.AsNoTracking()
-                        .Include(x => x.AddressCityHall)
-                        .Where(x => x.IsDeleted == false);
+            IQueryable<CityHall> cityHalls = _dbSet.AsNoTracking()
+                                                    .Include(x => x.AddressCityHall)
+                                                    .Where(x => x.IsDeleted == false);
 
-            return cityHalls;
+            return cityHalls.ToList(); ;
         }
 
         public new void Delete(CityHall entity)
         {
             entity.IsDeleted = true;
+            Update(entity);
         }
-
-
 
     }
 }
