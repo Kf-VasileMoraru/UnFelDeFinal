@@ -28,7 +28,7 @@ namespace InternProj.WebApi.Services
 
         public Iban GetBankAccountById(int id)
         {
-            return ibanRepository.GetIbanByIdWithCityHallAndElectronicService(id);
+            return ibanRepository.GetIbanById(id);
         }
 
         public IList<Iban> GetBankAccountsOfCityHall(FilterOptions filterOptions)
@@ -36,17 +36,9 @@ namespace InternProj.WebApi.Services
             IList<Iban> ibans;
             int searchTerm;
 
-            if (!string.IsNullOrWhiteSpace(filterOptions.SearchTerm))
+            if (Int32.TryParse(filterOptions.SearchTerm, out searchTerm))
             {
-                bool success = Int32.TryParse(filterOptions.SearchTerm, out searchTerm);
-
-                if (success)
-                {
-                    ibans = ibanRepository.GetIbansOfCityHall(searchTerm);
-                    return ibans;
-                }
-
-                return null;
+                ibans = ibanRepository.GetIbansOfCityHall(searchTerm);
             }
             else
             {
@@ -54,6 +46,20 @@ namespace InternProj.WebApi.Services
             }
 
             return ibans;
+        }
+
+        public bool DeleteIbanById(int id)
+        {
+            var iban = ibanRepository.Find(id);
+
+            if (iban == null)
+            {
+                return false;
+            }
+
+            ibanRepository.Delete(iban);
+
+            return true;
         }
     }
 }

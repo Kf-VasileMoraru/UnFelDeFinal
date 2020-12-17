@@ -18,11 +18,12 @@ namespace InternProj.Db.Repositories.Implementation
         }
 
 
-        public Iban GetIbanByIdWithCityHallAndElectronicService(int ibanId)
+        public Iban GetIbanById(int ibanId)
         {
             var iban = _dbSet.AsNoTracking()
                         .Include(x => x.ElectronicService)
                         .Include(x => x.CityHall)
+                        .Where(x => x.IsDeleted == false)
                         .FirstOrDefault(x => x.Id == ibanId);
 
             return iban;
@@ -32,9 +33,16 @@ namespace InternProj.Db.Repositories.Implementation
         {
             var listIban = _dbSet.Where(x => x.CityHallId == searchTerm)
                 .Include(x => x.ElectronicService)
-                .Include(x => x.CityHall);
+                .Include(x => x.CityHall)
+                .Where(x => x.IsDeleted == false);
 
             return listIban.ToList();
+        }
+
+        public new void Delete(Iban entity)
+        {
+            entity.IsDeleted = true;
+            Update(entity);
         }
     }
 }

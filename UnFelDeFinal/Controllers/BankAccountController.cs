@@ -48,9 +48,17 @@ namespace InternProj.WebApi.Controllers
                 return NotFound();
             }
 
-            //var result = iban.Select(x => mapper.Map<IbanDto>(iban));
+            var result = bankAccounts.Select(x => mapper.Map<BankAccountDto>(x));
 
-            return Ok(bankAccounts);
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCityHallById(int id)
+        {
+            ibanService.DeleteIbanById(id);
+
+            return NoContent();
         }
 
     }

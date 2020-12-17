@@ -29,7 +29,7 @@ namespace InternProj.Db
         {
             //optionsBuilder
             //.UseLazyLoadingProxies()
-            //.UseSqlServer(@"Data Source=MDDSK40119;Initial Catalog=UnFelDeFinal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //.UseSqlServer(@"Data Source=MDDSK40119;Initial Catalog=IntershipProject;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
